@@ -67,7 +67,131 @@ In the initial phase of developing the E-scoot E-commerce Platform, user stories
 - 1. Chat bot to answer queries and check orders statuses
 - 2. Reviews on product page
 
+# Wireframes
 
+<img src="readme-assets/wireframes/mobile-homepage.png" alt="Wireframe for mobile home page" width="800px" />
+
+## All pages:
+
+<details>
+   <summary>Mobile</summary>
+      
+-  <details>
+         <summary>Homepage</summary>
+            <img src="readme-assets/wireframes/mobile-homepage.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Login Page</summary>
+            <img src="readme-assets/wireframes/mobile-login.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Change Password</summary>
+            <img src="readme-assets/wireframes/mobile-change-password.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Cart</summary>
+            <img src="readme-assets/wireframes/mobile-cart.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Checkout</summary>
+            <img src="readme-assets/wireframes/mobile-checkout.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Contact Us</summary>
+            <img src="readme-assets/wireframes/mobile-contact-us.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Menu</summary>
+            <img src="readme-assets/wireframes/mobile-menu.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Orders</summary>
+            <img src="readme-assets/wireframes/mobile-orders.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Profile</summary>
+            <img src="readme-assets/wireframes/mobile-profile.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Search</summary>
+            <img src="readme-assets/wireframes/mobile-search.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Stock</summary>
+            <img src="readme-assets/wireframes/mobile-stock.png" width="800px" />
+      </details>
+
+</details>
+
+<details>
+   <summary>Desktop</summary>
+   
+-  <details>
+         <summary>Homepage</summary>
+            <img src="readme-assets/wireframes/desktop-homepage.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Login</summary>
+            <img src="readme-assets/wireframes/desktop-login.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Change Password</summary>
+            <img src="readme-assets/wireframes/desktop-change-password.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Cart</summary>
+            <img src="readme-assets/wireframes/desktop-cart.png" width="800px" />
+      </details>      
+
+-  <details>
+         <summary>Checkout</summary>
+            <img src="readme-assets/wireframes/desktop-checkout.png" width="800px" />
+      </details>  
+
+-  <details>
+         <summary>Contact Us</summary>
+            <img src="readme-assets/wireframes/desktop-contact-us.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Orders</summary>
+            <img src="readme-assets/wireframes/desktop-orders.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Popup</summary>
+            <img src="readme-assets/wireframes/desktop-popup.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Popup</summary>
+            <img src="readme-assets/wireframes/desktop-profile.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Search</summary>
+            <img src="readme-assets/wireframes/desktop-search.png" width="800px" />
+      </details>
+
+-  <details>
+         <summary>Stock</summary>
+            <img src="readme-assets/wireframes/desktop-stock.png" width="800px" />
+      </details>
+
+</details>
 
 ## Project Management and Planning
 
