@@ -22,50 +22,29 @@ E-scoot is a Django application designed as an ecommerce website.Tailored specif
 # Epics - User Stories
 
 
-In the initial phase of developing the E-scoot E-commerce Platform, user stories were created to capture the specific needs and expectations of both buyers and the site owner. Following this, the user stories were organized and grouped into coherent themes, resulting in the identification of key epics. This separation into epics streamlined the development process by categorizing related functionalities, ensuring a more organized and efficient approach to building the comprehensive features outlined in the user stories below.
+In the initial phase of developing the E-scoot E-commerce Platform, user stories were created to capture the specific needs and expectations of both buyers and the site owner. Following this, the user stories were organized and grouped into coherent themes and prioritized following the MoSCow method, resulting in the identification of key epics. This separation into epics streamlined the development process by categorizing related functionalities, ensuring a more organized and efficient approach to building the comprehensive features outlined in the user stories below.
 
-## **Buyer Epics:**
+## Buyer Epics:
 
-### 1. **Product Purchase and Customization:**
-- As a Buyer, I want to purchase an e-scooter by selecting only the parts and upgrades I require for my unique case so that I can customize my purchase to meet my specific needs.
-- As a Buyer who already owns an e-scooter, I want to purchase parts separately from the main product so that I can replace or upgrade specific components without buying a new scooter.
-- As a first-time site visitor, I want to quickly understand the purpose of the site and what I can accomplish on it so that I can easily navigate and find relevant information.
+| **Epic** | **User Story** | **MoSCoW Priority** |
+|----------|-----------------|---------------------|
+| **1. Product Purchase and Customization:** | - As a Buyer, I want to purchase an e-scooter by selecting only the parts and upgrades I require for my unique case so that I can customize my purchase to meet my specific needs.<br>- As a Buyer who already owns an e-scooter, I want to purchase parts separately from the main product so that I can replace or upgrade specific components without buying a new scooter.<br>- As a first-time site visitor, I want to quickly understand the purpose of the site and what I can accomplish on it so that I can easily navigate and find relevant information. | Must-Have |
+| **2. User Account Management:** | - As a Buyer, I want to see my addresses, edit them, or delete them as required so that I can manage my shipping information efficiently.<br>- As a Buyer, I want to see the status of my order and view past orders so that I can track my purchases and review my order history.<br>- As a Buyer, I want to sign up for a mailing list to stay up to date on offers so that I can receive updates and promotions.<br>- As a Buyer, I want to log in and log out of my profile or create a profile when checking out for the first time so that I can access personalized features and track my orders. | Must-Have |
+| **3. Shopping Cart and Checkout:** | - As a Buyer, I want to add products to my cart, view the subtotal, edit quantities, or remove products as required so that I can easily manage my shopping experience.<br>- As a Buyer, I want to pay for my order on a secure checkout page so that I can complete transactions with confidence. | Must-Have |
+| **4. Communication and Support:** | - As a Buyer, I want to contact the company either through a chat option or an email form so that I can seek assistance or get answers to my queries. | Should-Have |
 
-### 2. **User Account Management:**
-- As a Buyer, I want to see my addresses, edit them, or delete them as required so that I can manage my shipping information efficiently.
-- As a Buyer, I want to see the status of my order and view past orders so that I can track my purchases and review my order history.
-- As a Buyer, I want to sign up for a mailing list to stay up to date on offers so that I can receive updates and promotions.
-- As a Buyer, I want to log in and log out of my profile or create a profile when checking out for the first time so that I can access personalized features and track my orders.
+## Site Owner Epics:
 
-### 3. **Shopping Cart and Checkout:**
-- As a Buyer, I want to add products to my cart, view the subtotal, edit quantities, or remove products as required so that I can easily manage my shopping experience.
-- As a Buyer, I want to pay for my order on a secure checkout page so that I can complete transactions with confidence.
+| **Epic** | **User Story** | **MoSCoW Priority** |
+|----------|-----------------|---------------------|
+| **1. Website Management:** | - As the Site Owner, I want a modern and simple-to-navigate website to sell my products so that I can provide a positive user experience for potential buyers.<br>- As the Site Owner, I want to add or remove products so that I can keep my product offerings up to date.<br>- As the Site Owner, I want to edit the products so that I can make necessary updates or modifications to product information. | Must-Have |
+| **2. Order and Customer Management:** | - As the Site Owner, I want to view the orders placed so that I can efficiently process and ship the products to the buyer.<br>- As the Site Owner, I want to receive emails from buyers when they submit a form or chat on the site so that I can promptly respond to inquiries and provide support.<br>- As the Site Owner, I want to control the stock of the products and make products unavailable/unlisted so that I can manage inventory effectively. | Must-Have |
+| **3. Marketing and Outreach:** | - As the Site Owner, I want to have a Business Facebook page to increase my product/brand reach so that I can leverage social media for marketing and visibility. | Should-Have |
+| **4. Security and Data Protection:** | - As the Site Owner, I want to ensure the security and privacy of user information by implementing authentication and data protection measures to safeguard sensitive data so that users can trust the platform. | Must-Have |
+| **5. Chat bot to answer queries and check orders statuses** | Implement a chat bot feature that can assist users by answering queries and providing order status updates. | Could-Have |
+| **6. Reviews on product page** | Integrate a review system on product pages to allow buyers to share their experiences and opinions about the products. | Could-Have |
 
-### 4. **Communication and Support:**
-- As a Buyer, I want to contact the company either through a chat option or an email form so that I can seek assistance or get answers to my queries.
 
-## **Site Owner Epics:**
-
-### 1. **Website Management:**
-- As the Site Owner, I want a modern and simple-to-navigate website to sell my products so that I can provide a positive user experience for potential buyers.
-- As the Site Owner, I want to add or remove products so that I can keep my product offerings up to date.
-- As the Site Owner, I want to edit the products so that I can make necessary updates or modifications to product information.
-
-### 2. **Order and Customer Management:**
-- As the Site Owner, I want to view the orders placed so that I can efficiently process and ship the products to the buyer.
-- As the Site Owner, I want to receive emails from buyers when they submit a form or chat on the site so that I can promptly respond to inquiries and provide support.
-- As the Site Owner, I want to control the stock of the products and make products unavailable/unlisted so that I can manage inventory effectively.
-
-### 3. **Marketing and Outreach:**
-- As the Site Owner, I want to have a Business Facebook page to increase my product/brand reach so that I can leverage social media for marketing and visibility.
-
-### 4. **Security and Data Protection:**
-- As the Site Owner, I want to ensure the security and privacy of user information by implementing authentication and data protection measures to safeguard sensitive data so that users can trust the platform.
-
-## **Could have epics:**
-
-- 1. Chat bot to answer queries and check orders statuses
-- 2. Reviews on product page
 
 # Wireframes
 
