@@ -196,6 +196,56 @@ This project utilizes the MVC architecture to create a full-stack application. D
 
 ## Data Model
 
+<img src="readme-assets/data-model.webp" width="800px" />
+
+### User Table
+
+| Key Type | Attribute      | Type       | Unique | Relationship |
+| ---------| -------------- | ---------- | ------ | ------------ |
+| Primary Key | user_id      | Integer    | Yes    | -            |
+| -        | full_name      | CharField  | No     | -            |
+| -        | username       | CharField  | Yes    | -            |
+| -        | email          | EmailField | Yes    | -            |
+| -        | password       | CharField  | No     | -            |
+| -        | address        | TextField  | No     | -            |
+| -        | phone_number   | CharField  | No     | -            |
+| -        | role           | CharField  | No     | -            |
+
+### Product Table
+
+| Key Type | Attribute          | Type         | Unique | Relationship |
+| ---------| ------------------ | ------------ | ------ | ------------ |
+| Primary Key | product_id      | Integer      | Yes    | -            |
+| -        | product_name      | CharField    | No     | -            |
+| -        | description       | TextField    | No     | -            |
+| -        | price             | DecimalField | No     | -            |
+| -        | stock_quantity    | Integer      | No     | -            |
+| -        | image             | ImageField   | No     | -            |
+| -        | status            | CharField    | No     | -            |
+| -        | product_category  | CharField    | No     | -            |
+
+### Order Table
+
+| Key Type | Attribute          | Type           | Unique | Relationship |
+| ---------| ------------------ | -------------- | ------ | ------------ |
+| Primary Key | order_id        | Integer        | Yes    | -            |
+| Foreign Key (User) | user_id | ForeignKey    | No     | User         |
+| -        | order_date         | DateTimeField  | No     | -            |
+| -        | total_amount       | DecimalField   | No     | -            |
+| -        | status             | CharField      | No     | -            |
+| Foreign Key (User) | delivery_address | ForeignKey | No  | User         |
+
+### Order Item Table
+
+| Key Type | Attribute              | Type       | Unique | Relationship |
+| ---------| ---------------------- | ---------- | ------ | ------------ |
+| Primary Key | order_item_id      | Integer    | Yes    | -            |
+| Foreign Key (Order) | order_id  | ForeignKey | No     | Order        |
+| Foreign Key (Product) | product_id | ForeignKey | No   | Product      |
+| -        | quantity               | Integer    | No     | -            |
+| -        | product_name           | CharField  | No     | -            |
+| -        | product_description    | TextField  | No     | -            |
+
 
 
 ## UX
