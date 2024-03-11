@@ -13,5 +13,10 @@ class Product(models.Model):
     product_category = models.CharField(max_length=255)
 
     def __str__(self):
-        """String representation of the Product instance in a human readable format."""
+        """
+        Get a human-readable representation of the product.
+
+        Returns:
+            str: The product name of the product.
+        """
         return self.product_name

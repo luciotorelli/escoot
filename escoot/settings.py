@@ -46,9 +46,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # custom apps
+    # added apps
     'cloudinary_storage',
     'cloudinary',
+    'products',
 ]
 
 CLOUDINARY_STORAGE = {
