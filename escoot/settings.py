@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'products',
-    'bootstrap5',
+    'home',
+    'django_bootstrap5',
 ]
 
 CLOUDINARY_STORAGE = {
@@ -74,7 +75,7 @@ ROOT_URLCONF = 'escoot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
