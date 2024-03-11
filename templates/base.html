@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-scoot</title>
+    <!-- Load Bootstrap: 5, CSS, and JavaScript from Bootstrap CDN. -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <!-- Load JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Load stylesheet CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Load fontawesome CSS -->
+    <script
+      src="https://kit.fontawesome.com/ab2b00d870.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Link Favicon -->
+
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <!-- NAVBAR -->
+      </nav>
+
+      <section class="page-header">
+        <h1>E-scoot</h1>
+        <p>Build your ideal e-scooter.</p>
+        <div class="hero-image"></div>
+        {% if user.is_authenticated %}
+          <div class="welcome-message">Welcome {{ user.name }}!</div>
+        {% endif %}       
+      </section>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"
+          >Copyright &copy; 2024
+          <a href="https://github.com/luciotorelli/escoot">Project Portfolio 5 - Github Lúcio Torelli</a></span>
+      </div> 
+    </footer>
+  </body>
+</html>

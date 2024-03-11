@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'products',
+    'bootstrap5',
 ]
 
 CLOUDINARY_STORAGE = {
