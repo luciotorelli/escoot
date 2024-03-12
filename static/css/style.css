@@ -84,6 +84,11 @@ body {
     width: 40%;
 }
 
+.navbar-nav .dropdown-menu {
+      position: absolute;
+      float: none;
+}
+
 /* ------------------------------------- 992px Media */
 
 @media (min-width: 992px) {
