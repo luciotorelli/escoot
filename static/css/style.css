@@ -1,3 +1,6 @@
+/* ------------------------------------- Override */
+
+
 /* ------------------------------------- Body */
 
 body {
@@ -24,4 +27,29 @@ body {
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: contain;
+}
+
+/* ------------------------------------- Navbar */
+
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar-text {
+    padding: 0;
+}
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+}
+
+.offcanvas-custom {
+    background-color: #333738 !important; /* Override the default Bootstrap color */
+}
+
+.navbar-toggler-icon {
+    width: 1em;
 }
