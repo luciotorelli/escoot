@@ -8,6 +8,12 @@ body {
     color: #F1F5F2;
 }
 
+/* ------------------------------------- Main */
+
+main {
+    min-height: 30vh;
+}
+
 /* ------------------------------------- Page Header */
 
 .page-header {
@@ -40,6 +46,10 @@ body {
 }
 
 /* ------------------------------------- Navbar */
+
+.navbar {
+    background-color: #202020;
+}
 
 .navbar-mobile {
     position: fixed;
@@ -96,6 +106,22 @@ body {
 
 .dropdown-item {
     color: #F1F5F2 !important;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ------------------------------------- Footer */
+
+.footer {
+    margin-top: auto;
+}
+
+.github-link {
+    color: #1a6200;
 }
 
 /* ------------------------------------- 992px Media */

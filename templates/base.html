@@ -53,7 +53,7 @@
       id="sidebar"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Burger Menu</h5>
+        <h5 class="offcanvas-title">Menu</h5>
         <button
           type="button"
           class="btn-close text-reset"
@@ -63,7 +63,10 @@
       </div>
       <div class="offcanvas-body">
         <!-- Add your sidebar content here -->
-        <p>Sidebar Content Goes Here</p>
+      <span class="copyright text-muted">
+        Copyright &copy; 2024 <br>
+        <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
+      </span>        
       </div>
     </div>
 
@@ -143,15 +146,11 @@
 
     <main>{% block content %}{% endblock %}</main>
 
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted"
-          >Copyright &copy; 2024
-          <a href="https://github.com/luciotorelli/escoot"
-            >Project Portfolio 5 - Github Lúcio Torelli</a
-          ></span
-        >
-      </div>
-    </footer>
+  <footer class="d-flex justify-content-center footer mt-auto d-none d-lg-flex">
+      <span class="text-muted">
+        Copyright &copy; 2024
+        <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
+      </span>
+  </footer>
   </body>
 </html>
