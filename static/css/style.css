@@ -89,6 +89,15 @@ body {
       float: none;
 }
 
+.dropdown-menu {
+    background-color: #333738;
+    --bs-dropdown-link-hover-bg: #202020; /* Override the default Bootstrap hoover dropdown link */
+}
+
+.dropdown-item {
+    color: #F1F5F2 !important;
+}
+
 /* ------------------------------------- 992px Media */
 
 @media (min-width: 992px) {
