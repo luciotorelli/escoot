@@ -13,16 +13,26 @@ body {
 .page-header {
     height: auto;
     width: 100%;
-    margin: 0 auto;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.logo {
+.logo-mobile {
     background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1710179473/escoot-logo_dfsscb.webp");
     width: 100%;
+    height: 6vh;
+    margin-top: 10px;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain;
+}
+
+.logo-desktop {
+    background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1710179473/escoot-logo_dfsscb.webp");
+    width: 15%;
     height: 6vh;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -31,10 +41,16 @@ body {
 
 /* ------------------------------------- Navbar */
 
-.navbar {
+.navbar-mobile {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.navbar-desktop {
+    width: 100%;
+    height: auto;
+    padding: 0 !important;
 }
 
 .navbar-text {
@@ -52,4 +68,36 @@ body {
 
 .navbar-toggler-icon {
     width: 1em;
+}
+
+.searchbar {
+    width: 50%;
+}
+
+.navbar-expand-lg {
+    justify-content: space-between !important; /* Override the default Bootstrap justify-content */
+}
+
+.navbar-nav {
+    flex-direction: row; /* Override the default Bootstrap flex-direction */
+    justify-content: space-evenly;
+    width: 40%;
+}
+
+/* ------------------------------------- 992px Media */
+
+@media (min-width: 992px) {
+
+  .navbar {
+    padding: 20px 50px;
+  }  
+
+  .fixed-bottom-mobile {
+    position: static;
+  }
+
+  .searchbar {
+    width: 25%;
+    margin: 10px 10% 0 0;
+  }
 }
