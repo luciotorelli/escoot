@@ -7,9 +7,18 @@ class Product(models.Model):
     product_name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock_quantity = models.IntegerField()
+    stock_quantity = models.IntegerField(max_length=9999)  # Corrected typo here
     image = CloudinaryField('image')  # Uses CloudinaryField
-    status = models.CharField(max_length=255)
+    STATUS_CHOICES = [
+        ('in-stock', 'Stocked'),
+        ('out-of-stock', 'Out of Stock'),
+        ('deactivated', 'Deactivated'),
+    ]
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        blank=False,
+        null=False)
     product_category = models.CharField(max_length=255)
 
     def __str__(self):

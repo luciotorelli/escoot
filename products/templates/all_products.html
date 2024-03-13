@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %} {% block content %}
+<div class="products-main p-5">
+  <div class="container">
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-3 mb-3">
+        <div class="card products-card position-relative">
+          <!-- Product Image -->
+          <img
+            src="{{ product.image.url }}"
+            class="card-img-top"
+            alt="{{ product.product_name }}"
+          />
+
+          <div class="card-body text-center">
+            <!-- Product Name -->
+            <h5 class="card-title">{{ product.product_name }}</h5>
+
+            <!-- Price -->
+            <p class="card-text">${{ product.price }}</p>
+
+            <!-- Quantity Picker -->
+            <label for="quantity">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              max="99"
+              value="1"
+              class="form-control w-50 m-auto mb-2"
+            />
+
+            <!-- Add to Cart Button -->
+            <button class="btn btn-primary mb-2">Add to Cart</button>
+          </div>
+
+          <!-- Info Icon Button (fixed at top right) -->
+          <button
+            class="btn btn-info position-absolute top-0 end-0 m-2"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="More Info"
+          >
+            <span class="bi bi-info-circle"></span>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
