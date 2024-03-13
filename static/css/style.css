@@ -1,4 +1,14 @@
-/* ------------------------------------- Override */
+/* ------------------------------------- Overrides */
+
+.btn-primary {
+    background-color: #1a6200 !important;
+    border-color: #1a6200 !important;
+}
+
+.btn-primary:hover, .btn-primary:active{
+    background-color: #333738 !important;
+    border-color: #333738 !important;
+}
 
 
 /* ------------------------------------- Body */
@@ -112,6 +122,35 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* ------------------------------------- Homepage Main */
+
+.homepage-main {
+    min-height: 75vh;
+}
+
+.hero-image{
+    background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1710345606/hero-image-opaque_wfsyhc.jpg");
+    width: 100%;
+    min-height: 40vh;
+    max-height: 50vh;
+    margin-top: 10px;
+    background-position: bottom !important;
+    background-repeat: no-repeat !important;
+    background-size: cover;
+}
+
+
+.custom-card {
+    background-color: #333738;
+    border: 1px solid #495057;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    background-color: #2b2e30;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* ------------------------------------- Footer */

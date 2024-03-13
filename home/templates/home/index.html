@@ -10,7 +10,44 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        Index Home
-    </div>
+    <div class="homepage-main">
+        <div class="hero-image d-flex align-items-center justify-content-center">
+            <!-- Shop Now button-->
+            <a href="#" class="btn btn-primary btn-lg shop-now-btn mt-5">Shop Now</a>
+        </div>
+        <div class="about-product"></div>
+
+        <div class="container mt-4 text-center">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <span class="bi bi-gear-wide-connected h3 mb-3"></span>
+                            <h2 class="card-title">Customizable</h2>
+                            <p class="card-text">Build your ideal E-scooter!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <span class="bi bi-tools h3 mb-3"></span>
+                            <h2 class="card-title">Repairable</h2>
+                            <p class="card-text">Needs repair? Buy only the parts you need!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <span class="bi bi-currency-dollar h3 mb-3"></span>
+                            <h2 class="card-title">Affordable</h2>
+                            <p class="card-text">Make it as fancy or as budget-friendly as you want.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+    <div class="shop-now-btn"></div>
 {% endblock %}
