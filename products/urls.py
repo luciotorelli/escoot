@@ -6,5 +6,4 @@ app_name = 'products'
 
 urlpatterns = [
     path('all/', all_products, name='all_products'),
-    # Add more URLs as needed
 ]
