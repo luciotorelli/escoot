@@ -3,17 +3,18 @@ from .models import Product
 
 def all_products(request):
     """
-    Render all products with optional sorting and filtering.
+    Render all products with optional sorting, filtering, and search.
 
     Args:
-        request: HttpRequest object containing sorting and filtering parameters.
+        request: HttpRequest object containing sorting, filtering, and search parameters.
 
     Returns:
-        Rendered template with sorted and filtered product data.
+        Rendered template with sorted, filtered, and searched product data.
     """
-    # Retrieve sorting and filtering parameters from the request
+    # Retrieve sorting, filtering, and search parameters from the request
     sort_by = request.GET.get('sort_by')
     category_filter = request.GET.get('category')
+    search_query = request.GET.get('search')
 
     # Get all products queryset
     products = Product.objects.all()
@@ -21,6 +22,10 @@ def all_products(request):
     # Apply filtering if category is selected
     if category_filter:
         products = products.filter(product_category=category_filter)
+
+    # Apply search filtering if query is present
+    if search_query:
+        products = products.filter(product_name__icontains=search_query)
 
     # Apply sorting based on the selected criteria
     if sort_by == 'price_low_to_high':
@@ -31,4 +36,10 @@ def all_products(request):
     # Get unique categories
     categories = Product.objects.values_list('product_category', flat=True).distinct()
 
-    return render(request, 'all_products.html', {'products': products, 'categories': categories})
+    # Pass the search query to the template
+    context = {
+        'products': products,
+        'categories': categories,
+        'search_query': search_query
+    }
+    return render(request, 'all_products.html', context)

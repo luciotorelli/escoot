@@ -1,156 +1,127 @@
-{% load static %} {% load i18n %}
+{% load static %} 
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
     <title>E-scoot</title>
 
     <!-- Load JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Load Bootstrap: 5, CSS, and JavaScript from Bootstrap CDN. -->
-    {% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
     <!-- Load stylesheet CSS file -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     <!-- Load Bootstrap Icons CSS file -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
     <!-- Load fontawesome CSS -->
-    <script
-      src="https://kit.fontawesome.com/ab2b00d870.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/ab2b00d870.js" crossorigin="anonymous"></script>
 
     <!-- Link Favicon -->
-    <link
-      rel="shortcut icon"
-      type="image/ico"
-      href="{% static 'img/favicon.ico' %}"
-    />
-  </head>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'img/favicon.ico' %}" />
 </head>
-
 <body>
-  <header>
-    <!-- Mobile Logo (shown on small screens) -->
-    <div class="logo-mobile d-block d-lg-none">
-      <h1 class="d-none">E-scoot</h1>
-    </div>
-
-    <!-- Navbar -->
-
-    <!-- Offcanvas Sidebar -->
-    <div
-      class="offcanvas offcanvas-start offcanvas-custom"
-      tabindex="-1"
-      id="sidebar"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Menu</h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body">
-        <!-- Add your sidebar content here -->
-      <span class="copyright text-muted">
-        Copyright &copy; 2024 <br>
-        <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
-      </span>        
-      </div>
-    </div>
-
-    <div class="px-1">
-      <nav class="navbar navbar-mobile navbar-expand-lg navbar-dark fixed-bottom-mobile justify-space-around">
-          <!-- Burger Menu Button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#sidebar"
-            aria-controls="sidebar"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="logo-desktop d-none d-lg-block">
+    <header>
+        <!-- Mobile Logo (shown on small screens) -->
+        <div class="logo-mobile d-block d-lg-none">
             <h1 class="d-none">E-scoot</h1>
-          </div>  
+        </div>
 
-          <!-- Search Bar -->
-          <div class="d-flex searchbar">
-            <form class="input-group">
-              <input
-                type="search"
-                class="form-control"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-secondary" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
-          </div>
+        <!-- Navbar -->
 
-          <!-- Icons on the Right -->
-          <div class="d-flex">
-            <!-- Account Icon -->
-            <span class="navbar-text ">
-              <i class="bi bi-person-square fs-2 me-3 me-sm-3 me-md-4 me-lg-4 me-xl-4"></i>
-            </span>
+        <!-- Offcanvas Sidebar -->
+        <div class="offcanvas offcanvas-start offcanvas-custom" tabindex="-1" id="sidebar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Menu</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- Add your sidebar content here -->
+                <span class="copyright text-muted">
+                    Copyright &copy; 2024 <br>
+                    <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
+                </span>
+            </div>
+        </div>
 
-            <!-- Shopping Cart Icon -->
-            <span class="navbar-text">
-              <i class="bi bi-cart fs-2 me-2"></i>
-            </span>
-          </div>
-      </nav>
-    </div>
+        <div class="px-1">
+            <nav class="navbar navbar-mobile navbar-expand-lg navbar-dark fixed-bottom-mobile justify-space-around">
+                <!-- Burger Menu Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <nav class="navbar navbar-desktop navbar-dark justify-content-center d-none d-lg-flex">
-      <ul class="navbar-nav d-flex">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            All Products
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Product 1</a>
-            <a class="dropdown-item" href="#">Product 2</a>
-            <a class="dropdown-item" href="#">Product 3</a>
-            <!-- Add more dropdown items as needed -->
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-      </ul>
-    </nav>
+                <div class="logo-desktop d-none d-lg-block">
+                    <h1 class="d-none">E-scoot</h1>
+                </div>
 
-    <section class="page-header">
-      <!-- Your header content here -->
-    </section>
-  </header>
+                <!-- Search Form -->
+                <div class="d-flex searchbar">
+                    <form class="input-group" method="GET" action="{% url 'products:all_products' %}">
+                        <input type="search" class="form-control" value="{{ search_query }}" placeholder="{% trans 'Search' %}" aria-label="{% trans 'Search' %}" name="search">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Icons on the Right -->
+                <div class="d-flex">
+                    <!-- Account Icon -->
+                    <span class="navbar-text">
+                        <i class="bi bi-person-square fs-2 me-3 me-sm-3 me-md-4 me-lg-4 me-xl-4"></i>
+                    </span>
+
+                    <!-- Shopping Cart Icon -->
+                    <span class="navbar-text">
+                        <i class="bi bi-cart fs-2 me-2"></i>
+                    </span>
+                </div>
+            </nav>
+        </div>
+
+        <nav class="navbar navbar-desktop navbar-dark justify-content-center d-none d-lg-flex">
+            <ul class="navbar-nav d-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        All Products
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Product 1</a>
+                        <a class="dropdown-item" href="#">Product 2</a>
+                        <a class="dropdown-item" href="#">Product 3</a>
+                        <!-- Add more dropdown items as needed -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="page-header">
+            <!-- Your header content here -->
+        </section>
+    </header>
 
     <main>{% block content %}{% endblock %}</main>
 
-  <footer class="d-flex justify-content-center footer mt-auto d-none d-lg-flex">
-      <span class="text-muted">
-        Copyright &copy; 2024
-        <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
-      </span>
-  </footer>
-  </body>
+    <footer class="d-flex justify-content-center footer mt-auto d-none d-lg-flex">
+        <span class="text-muted">
+            Copyright &copy; 2024
+            <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
+        </span>
+    </footer>
+</body>
 </html>
