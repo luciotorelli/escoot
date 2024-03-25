@@ -189,6 +189,13 @@ main {
     background-position: center;
 }
 
+.accordion-title-left {
+    flex: 1;
+}
+
+.accordion-builder {
+    background-color: #1a6200 !important;
+}
 
 /* ------------------------------------- Footer */
 

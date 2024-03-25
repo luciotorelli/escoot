@@ -18,14 +18,14 @@
                 <form method="post">
                     {% csrf_token %}
                     <!-- Accordion -->
-                    <div class="accordion mt-3" id="accordion">
+                    <div class="accordion accordion-builder mt-3" id="accordion">
                         {% for category, products in category_list.items %}
                             <div class="accordion-item">
                                 <!-- Accordion Header -->
                                 <h2 class="accordion-header" id="heading{{ forloop.counter }}">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
-                                        <!-- Category name -->
-                                        {{ category|capfirst }}
+                                    <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
+                                        <div class="accordion-title-left">{{ category|capfirst }}</div>
+                                        <span class="selected-items-qty m-2 small text-nowrap"></span>
                                     </button>
                                 </h2>
                                 <!-- Accordion Body -->
@@ -34,14 +34,12 @@
                                         <!-- List group -->
                                         <ul class="list-group">
                                             {% for product in products %}
-                                                <li class="list-group-item">
+                                                <li class="list-group-item toggle-checkbox">
                                                     <!-- List item -->
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" name="selected_products" value="{{ product.id }}" id="product{{ product.id }}">
-                                                        <label class="form-check-label" for="product{{ product.id }}">
-                                                            <!-- Product name and price -->
-                                                            {{ product.product_name }} - ${{ product.price }}
-                                                        </label>
+                                                        <!-- Product name and price -->
+                                                        {{ product.product_name }} - ${{ product.price }}
                                                     </div>
                                                 </li>
                                             {% endfor %}
@@ -67,4 +65,7 @@
             </ul>
         </div>
     {% endif %}
+
+    <script src="{% static 'js/builder_checkbox_toggle.js' %}"></script>
+
 {% endblock %}
