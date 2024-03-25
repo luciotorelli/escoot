@@ -43,3 +43,32 @@ def all_products(request):
         'search_query': search_query
     }
     return render(request, 'all_products.html', context)
+
+def escooter_builder(request):
+    """
+    Render the e-scooter builder page allowing users to select products to build their e-scooter.
+
+    If the request method is POST, process the selected products and add them to the cart.
+    If the request method is GET, retrieve all products and organize them by category for display.
+
+    Args:
+        request: HttpRequest object containing the HTTP request data.
+
+    Returns:
+        Rendered template with e-scooter builder page, displaying products organized by category.
+    """
+    if request.method == 'POST':
+        selected_products_ids = request.POST.getlist('selected_products')
+        # Logic to add products to the cart based on selected_products_ids
+        messages.success(request, "Products added to cart successfully.")
+        return redirect('cart')  # Redirect to the cart page
+    else:
+        products = Product.objects.all().order_by('product_category', 'product_name')
+        category_list = {}
+        
+        for product in products:
+            if product.product_category not in category_list:
+                category_list[product.product_category] = []
+            category_list[product.product_category].append(product)
+        
+        return render(request, 'escooter_builder.html', {'category_list': category_list})

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    E-Scooter Builder
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Image to the left -->
+                <div class="builder-featured-image"></div>
+            </div>
+            <div class="col-md-6">
+                <!-- Form to the right -->
+                <h1 class="mt-3">E-Scooter Builder</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Accordion -->
+                    <div class="accordion mt-3" id="accordion">
+                        {% for category, products in category_list.items %}
+                            <div class="accordion-item">
+                                <!-- Accordion Header -->
+                                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
+                                        <!-- Category name -->
+                                        {{ category|capfirst }}
+                                    </button>
+                                </h2>
+                                <!-- Accordion Body -->
+                                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <!-- List group -->
+                                        <ul class="list-group">
+                                            {% for product in products %}
+                                                <li class="list-group-item">
+                                                    <!-- List item -->
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="selected_products" value="{{ product.id }}" id="product{{ product.id }}">
+                                                        <label class="form-check-label" for="product{{ product.id }}">
+                                                            <!-- Product name and price -->
+                                                            {{ product.product_name }} - ${{ product.price }}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Add to cart button -->
+                    <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {% if messages %}
+        <div class="container mt-4">
+            <ul class="list-group">
+                {% for message in messages %}
+                    <li class="list-group-item">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
