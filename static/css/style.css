@@ -69,12 +69,16 @@ main {
 
 .navbar {
     background-color: #202020;
+    z-index:999;
 }
 
 .navbar-mobile {
     position: fixed;
     bottom: 0;
     width: 100%;
+    padding-bottom: 0;
+    border-bottom: #202020 2px solid;
+    border-top: #1a6200 2px solid;
 }
 
 .navbar-desktop {
