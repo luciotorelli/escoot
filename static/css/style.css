@@ -4,7 +4,8 @@
     background-color: #1a6200 !important;
     border-color: #1a6200 !important;
     transition: opacity 0.4s ease-in;
-    color: #f1f5f2;    
+    color: #f1f5f2;
+    font-size: 14px;
 }
 
 .btn-primary:hover, .btn-info:hover{
@@ -184,23 +185,53 @@ main {
 
 .builder-featured-image {
     height: 100%;
-    background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1711366490/owzsa4fxeojwmtyyguzj.jpg");
+    background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1712146364/escooter-builder-featured-cropped_qble5i.webp");
     background-size: cover;
     background-position: center;
+    min-height: 800px;
+    max-height: 800px;
 }
 
 .accordion-title-left {
     flex: 1;
 }
 
-.accordion-builder {
-    background-color: #1a6200 !important;
+.custom-accordion {
+    --bs-accordion-btn-color: #202020 !important;
+    --bs-accordion-btn-bg: #F1F5F2 !important;
+	--bs-accordion-active-color:;
+	--bs-accordion-active-bg: #c1c2c1 !important;
+    --bs-accordion-bg: #c1c2c1 !important;
+    --bs-accordion-btn-focus-box-shadow: none;
+}
+
+.custom-list-item {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+.custom-list-item:hover,
+.custom-list-item:focus {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-product-price {
+    font-size: 14px !important;
+}
+
+.selected-items-qty {
+    color: #1a6200 !important;
+    font-weight: 600;
+}
+
+.spacer {
+    min-width: 30px;
 }
 
 /* ------------------------------------- Footer */
 
 .footer {
-    margin-top: auto;
+    margin: 100px 0 20px 0;
 }
 
 .github-link {

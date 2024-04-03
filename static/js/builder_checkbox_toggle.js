@@ -27,4 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleCheckboxes.forEach(function(item) {
         item.addEventListener('click', toggleCheckbox);
     });
+
+    // Add event listener for when an accordion is shown
+    const accordions = document.querySelectorAll('.accordion-collapse');
+    accordions.forEach(function(accordion) {
+        accordion.addEventListener('shown.bs.collapse', function() {
+            // Scroll to the .built-it-h1 element
+            const builtItH1 = document.querySelector('.built-it-h1');
+            builtItH1.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
 });
