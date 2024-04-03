@@ -44,7 +44,6 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <!-- Add your sidebar content here -->
                 <span class="copyright text-muted">
                     Copyright &copy; 2024 <br>
                     <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
@@ -91,17 +90,15 @@
         <nav class="navbar navbar-desktop navbar-dark justify-content-center d-none d-lg-flex">
             <ul class="navbar-nav d-flex">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         All Products
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Product 1</a>
-                        <a class="dropdown-item" href="#">Product 2</a>
-                        <a class="dropdown-item" href="#">Product 3</a>
-                        <!-- Add more dropdown items as needed -->
+                        <a class="dropdown-item" href="{% url 'products:escooter_builder' %}">E-Scooter builder</a>
+                        <a class="dropdown-item" href="{% url 'products:all_products' %}">Shop All Parts</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -109,10 +106,6 @@
                 </li>
             </ul>
         </nav>
-
-        <section class="page-header">
-            <!-- Your header content here -->
-        </section>
     </header>
 
     <main>{% block content %}{% endblock %}</main>

@@ -10,11 +10,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class="homepage-main">
-        <div class="hero-image d-flex align-items-center justify-content-center">
-            <!-- Shop Now button-->
-            <a href="#" class="btn btn-primary btn-lg shop-now-btn mt-5">Shop Now</a>
+    <div class="homepage-main">        
+        <div class="hero-image d-flex align-items-center justify-content-center flex-column">
+            <h2 class="text-center mb-1 custom-h2">The only modular electric scooter</h2>
+            <div class="d-flex flex-column flex-md-row"> <!-- Use flex-column on mobile and flex-row on tablet and above -->
+                <!-- Build your E-scooter button -->
+                <a href="{% url 'products:escooter_builder' %}" class="btn btn-primary btn-lg shop-now-btn m-3">Build your E-scooter</a>
+                <!-- Shop all parts button -->
+                <a href="{% url 'products:all_products' %}" class="btn btn-primary btn-lg shop-now-btn m-3">Shop all parts</a>
+            </div>
         </div>
+        
         <div class="about-product"></div>
 
         <div class="container mt-4 text-center">
@@ -49,5 +55,4 @@
             </div>
         </div>
     </div>        
-    <div class="shop-now-btn"></div>
 {% endblock %}
