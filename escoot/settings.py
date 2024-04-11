@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'products',
     'home',
+    'cart',
     'django_bootstrap5',
 ]
 
@@ -83,10 +84,15 @@ TEMPLATES = [
                 'django.template.context_processors.request', # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',
             ],
         },
     },
 ]
+
+# Delivery-related settings
+FREE_DELIVERY_THRESHOLD = 70
+STANDARD_DELIVERY_PERCENTAGE = 0.1
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
