@@ -65,8 +65,12 @@
               class="form-control w-50 m-auto mb-2"
             />
 
-            <!-- Add to Cart Button -->
-            <button class="btn btn-primary mb-2">Add to Cart</button>
+            <form method="post" action="{% url 'cart:add_to_cart' product.product_id %}">
+                {% csrf_token %}
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+            </form>
 
             <!-- Info Icon Button (fixed at top right) -->
             <button

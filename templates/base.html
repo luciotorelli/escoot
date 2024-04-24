@@ -51,8 +51,8 @@
             </div>
         </div>
 
-        <div class="px-1">
-            <nav class="navbar navbar-mobile navbar-expand-lg navbar-dark fixed-bottom-mobile justify-space-around">
+        <div>
+            <nav class="navbar navbar-mobile navbar-expand-lg navbar-dark fixed-bottom-mobile justify-space-around px-1">
                 <!-- Burger Menu Button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
                     <span class="navbar-toggler-icon"></span>
@@ -80,8 +80,16 @@
                     </span>
 
                     <!-- Shopping Cart Icon -->
-                    <span class="navbar-text">
-                        <i class="bi bi-cart fs-2 me-2"></i>
+                    <span class="navbar-text position-relative me-3">
+                        <a class="nav-cart-icon" href="{% url 'cart:cart' %}">
+                            <i class="bi bi-cart fs-2 me-2 {% if product_count %}cart-icon-full{% endif %}"></i>
+                            {% if product_count %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill cart-badge">
+                                    {{ product_count }}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            {% endif %}
+                        </a>
                     </span>
                 </div>
             </nav>

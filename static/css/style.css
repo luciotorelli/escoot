@@ -98,7 +98,7 @@ main {
     width: 100%;
     padding-bottom: 0;
     border-bottom: #202020 2px solid;
-    border-top: #1a6200 2px solid;
+    height: 80px;
 }
 
 .navbar-desktop {
@@ -156,6 +156,15 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.cart-badge {
+    color: white;
+    background-color: #1A620C;
+}
+
+.cart-icon-full {
+    color: #1A620C;
 }
 
 /* ------------------------------------- Homepage Main */
