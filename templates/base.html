@@ -84,7 +84,7 @@
                         <a class="nav-cart-icon" href="{% url 'cart:cart' %}">
                             <i class="bi bi-cart fs-2 me-2 {% if product_count %}cart-icon-full{% endif %}"></i>
                             {% if product_count %}
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill cart-badge">
+                                <span class="position-absolute top-25 start-75 translate-middle badge rounded-pill cart-badge">
                                     {{ product_count }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
