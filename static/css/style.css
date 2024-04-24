@@ -22,6 +22,25 @@
     background-color: #333738;
 }
 
+.custom-modal-content, 
+.custom-modal-header,
+.custom-modal-title,
+.custom-close-button,
+.custom-modal-body,
+.custom-modal-footer {
+    background-color: #333738;
+}
+
+.custom-bottom-close-button {
+    background-color: #1a6200;
+    color: #f1f5f2;
+}
+
+.custom-bottom-close-button:hover {
+    opacity: 0.80;
+    background-color: #1a6200 !important;
+}
+
 /* ------------------------------------- Body */
 
 body {
