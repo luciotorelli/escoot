@@ -41,6 +41,48 @@
     background-color: #1a6200 !important;
 }
 
+
+/* ------------------------------------- Toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.toast {
+    background-color: #F1F5F2 !important;
+    color: #202020 !important;
+    border: none !important
+}
+
+.toast-header {
+    background-color: #1a6200 !important;
+    color: #F1F5F2 !important;
+    border-bottom: none !important;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.hide {
+    opacity: 0;
+}
+
+.toast.fade {
+    transition: opacity 0.15s linear;
+}
+
 /* ------------------------------------- Body */
 
 body {
