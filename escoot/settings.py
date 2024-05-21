@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'home',
     'cart',
     'django_bootstrap5',
+    'checkout',
 ]
 
 CLOUDINARY_STORAGE = {
