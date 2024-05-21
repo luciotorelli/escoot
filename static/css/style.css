@@ -83,6 +83,12 @@
     transition: opacity 0.15s linear;
 }
 
+.cart-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 /* ------------------------------------- Body */
 
 body {
