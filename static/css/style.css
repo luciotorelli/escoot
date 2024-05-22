@@ -320,6 +320,40 @@ main {
     width: 80px;
   }
 
+/* ------------------------------------- Checkout */
+.checkout-container {
+    background-color: #333738 !important;
+}
+
+.fieldset-label {
+    color: #fff;
+}
+
+.form-check-label a {
+    color: #0d6efd;
+}
+
+.btn-outline-secondary, .btn-primary {
+    border-radius: 50px;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary:hover {
+    background-color: #0a58ca;
+}
+
+.order-summary-scrollable {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
 /* ------------------------------------- Footer */
 
 .footer {
