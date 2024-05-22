@@ -27,6 +27,9 @@
 
     <!-- Link Favicon -->
     <link rel="shortcut icon" type="image/ico" href="{% static 'img/favicon.ico' %}" />
+
+    <!-- Load Stripe script-->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <header>
@@ -143,11 +146,15 @@
     </div>
 {% endif %}
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".toast").toast('show');
-    });
-</script>
+{% block postloadjs %}
+
+    <!-- Show toasts -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".toast").toast('show');
+        });
+    </script>
+{% endblock %}
 
 </body>
 </html>
