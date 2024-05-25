@@ -33,11 +33,12 @@
 </head>
 <body>
     <header>
-        <!-- Mobile Logo (shown on small screens) -->
-        <div class="logo-mobile d-block d-lg-none">
-            <h1 class="d-none">E-scoot</h1>
-        </div>
-
+        <a href="{% url 'home' %}">
+            <!-- Mobile Logo (shown on small screens) -->
+            <div class="logo-mobile d-block d-lg-none">
+                <h1 class="d-none">E-scoot</h1>
+            </div>
+        </a>
         <!-- Navbar -->
 
         <!-- Offcanvas Sidebar -->
@@ -61,7 +62,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="logo-desktop d-none d-lg-block">
+                <div class="logo-desktop d-none d-lg-block" onclick="window.location.href = '{% url 'home' %}'">
                     <h1 class="d-none">E-scoot</h1>
                 </div>
 
