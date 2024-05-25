@@ -215,6 +215,10 @@ main {
     color: #1A620C;
 }
 
+.account-icon-authenticated {
+    color: #1A620C !important;
+}
+
 /* ------------------------------------- Homepage Main */
 
 .homepage-main {

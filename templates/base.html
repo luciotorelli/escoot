@@ -78,10 +78,32 @@
                 <!-- Icons on the Right -->
                 <div class="d-flex">
                     <!-- Account Icon -->
-                    <span class="navbar-text">
-                        <i class="bi bi-person-square fs-2 me-3 me-sm-3 me-md-4 me-lg-4 me-xl-4"></i>
-                    </span>
-
+                        <span class="navbar-text">
+                            {% if user.is_authenticated %}
+                                <div class="dropdown d-none d-lg-block d-xl-block">
+                                    <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropup d-lg-none d-xl-none">
+                                    <a class="nav-link" href="#" role="button" id="dropupMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLink">
+                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'account_login' %}">
+                                    <i class="bi bi-person-square fs-2 me-3 account-icon"></i>
+                                </a>
+                            {% endif %}
+                        </span>
                     <!-- Shopping Cart Icon -->
                     <span class="navbar-text position-relative me-3">
                         <a class="nav-cart-icon" href="{% url 'cart:cart' %}">
