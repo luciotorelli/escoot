@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product
+from .forms import ProductForm
 
 def all_products(request):
     """
@@ -72,3 +73,21 @@ def escooter_builder(request):
             category_list[product.product_category].append(product)
         
         return render(request, 'escooter_builder.html', {'category_list': category_list})
+
+def add_product(request):
+    """ Add a product to the store """
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product added successfully.')
+            return redirect('all_products')
+    else:
+        form = ProductForm()
+    
+    template = 'add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
