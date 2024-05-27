@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
 from .forms import ProductForm
+from django.contrib import messages
+from django.urls import reverse
 
 def all_products(request):
     """
@@ -77,14 +79,16 @@ def escooter_builder(request):
 def add_product(request):
     """ Add a product to the store """
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Product added successfully.')
-            return redirect('all_products')
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('products:add_product'))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
-    
+        
     template = 'add_product.html'
     context = {
         'form': form,
