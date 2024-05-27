@@ -29,3 +29,16 @@ class Product(models.Model):
             str: The product name of the product.
         """
         return self.product_name
+
+    def delete(self, *args, **kwargs):
+        """
+        Override the default delete method to force deletion.
+        """
+        # Perform custom actions before deletion, if needed
+        # For example, you can delete related objects or perform cleanup
+
+        # Call the superclass delete method to perform the actual deletion
+        super().delete(*args, **kwargs)
+
+        # Perform additional actions after deletion, if needed
+        # For example, you can log the deletion or trigger other processes

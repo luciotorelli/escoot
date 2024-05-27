@@ -68,6 +68,10 @@
                 />
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+                {% if request.user.is_superuser %}
+                  <a href="{% url 'products:edit_product' product.product_id %}" class="btn btn-warning mb-2">Edit</a>
+                  <a href="{% url 'products:delete_product' product.product_id %}" class="btn btn-danger mb-2">Delete</a>
+                {% endif %}
             </form>
 
             <!-- Info Icon Button (fixed at top right) -->
