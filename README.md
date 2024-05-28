@@ -12,10 +12,27 @@ E-scoot is a Django application designed as an ecommerce website.Tailored specif
 
 ## Table of Contents
 
-
 1. [Overview](https://github.com/luciotorelli/escoot#overview)
-2. [Epics - User Stories](https://github.com/luciotorelli/escoot#epics-user-stories)
+2. [Mockup Facebook Business Page](https://github.com/luciotorelli/escoot#mockup-facebook-business-page)
+3. [Epics - User Stories](https://github.com/luciotorelli/escoot#epics-user-stories)
+4. [Wireframes](https://github.com/luciotorelli/escoot#wireframes)
+5. [Project Management and Planning](https://github.com/luciotorelli/escoot#project-management-and-planning)
+6. [UX](https://github.com/luciotorelli/escoot#ux)
+7. [Features](https://github.com/luciotorelli/escoot#features)
+8. [Technologies Used](https://github.com/luciotorelli/escoot#technologies-used)
+9. [Testing](https://github.com/luciotorelli/escoot#testing)
+10. [Deployment](https://github.com/luciotorelli/escoot#deployment)
+11. [Credits](https://github.com/luciotorelli/escoot#credits)
 
+---
+
+# Mockup Facebook Business Page
+
+<img id="facebook-mockup" src="readme-assets/facebook-mockup.png"
+     alt="Facebook Business Page Mockup"
+     width="800px" style="max-width: 100%;"/>
+
+A business page is valuable in my ecommerce website because it serves as a platform to reach a broad audience, engage with potential customers, and build a community around my brand.
 
 ---
 
