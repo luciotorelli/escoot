@@ -33,8 +33,11 @@ DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 ALLOWED_HOSTS = [
     'escoot-727e056426fa.herokuapp.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    '8000-luciotorelli-escoot-y1mlo0ofvjv.ws-eu114.gitpod.io'
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'https://*.herokuapp.com']
 
 
 # Application definition
