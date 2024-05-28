@@ -5,6 +5,7 @@ from .forms import ProductForm
 from django.contrib import messages
 from django.urls import reverse
 from django.db import IntegrityError
+from wishlist.models import Wishlist
 
 
 def all_products(request):
@@ -42,11 +43,17 @@ def all_products(request):
     # Get unique categories
     categories = Product.objects.values_list('product_category', flat=True).distinct()
 
+    wishlist_product_ids = []
+    if request.user.is_authenticated:
+        wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+        wishlist_product_ids = wishlist.products.values_list('product_id', flat=True)
+
     # Pass the search query to the template
     context = {
         'products': products,
         'categories': categories,
-        'search_query': search_query
+        'search_query': search_query,
+        'wishlist_product_ids': wishlist_product_ids,
     }
     return render(request, 'all_products.html', context)
 

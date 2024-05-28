@@ -271,6 +271,10 @@ main {
     color: #202020
 }
 
+.btn-custom-wishlist {
+    background-color: #1a6200 !important;
+}
+
 /* ------------------------------------- Escooter Builder page */
 
 .builder-featured-image {

@@ -75,12 +75,21 @@
             </form>
 
             <!-- Wishlist Button (fixed at top left) -->
-            <form method="post" action="{% url 'wishlist:add_to_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-secondary" title="Add to Wishlist">
-                <span class="bi bi-heart"></span>
-              </button>
-            </form>
+            {% if product.product_id in wishlist_product_ids %}
+              <form method="post" action="{% url 'wishlist:remove_from_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-custom-wishlist text-danger" title="Remove from Wishlist">
+                  <span class="bi bi-heart-fill"></span>
+                </button>
+              </form>
+            {% else %}
+              <form method="post" action="{% url 'wishlist:add_to_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-custom-wishlist" title="Add to Wishlist">
+                  <span class="bi bi-heart"></span>
+                </button>
+              </form>
+            {% endif %}
 
             <!-- Info Icon Button (fixed at top right) -->
             <button

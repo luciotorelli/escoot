@@ -5,26 +5,110 @@
     Your Wishlist
 {% endblock %}
 
-{% block content %}
-<div class="container my-5">
-    <h1>Your Wishlist</h1>
-    {% if wishlist.products.all %}
-        <ul class="list-group">
-            {% for product in wishlist.products.all %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ product.product_name }}
-                    <div>
-                        <span class="badge badge-primary badge-pill">${{ product.price }}</span>
-                        <form method="post" action="{% url 'wishlist:remove_from_wishlist' product.product_id %}" class="d-inline-block">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                        </form>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You have no items in your wishlist.</p>
-    {% endif %}
+{% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
 </div>
+{% endblock %}
+
+{% block content %}
+<div class="container p-5">
+    <h1 class="text-center mb-4">Your Wishlist</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xl-8">
+            {% if wishlist.products.all %}
+                <ul class="list-group">
+                    {% for product in wishlist.products.all %}
+                        <li class="list-group-item">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                <div class="d-flex align-items-center mb-2 mb-md-0" style="flex-grow: 1;">
+                                    <img src="{{ product.image.url }}" alt="{{ product.product_name }}" class="img-fluid rounded" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#productInfoModal{{ product.product_id }}">
+                                    <div style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#productInfoModal{{ product.product_id }}">
+                                        <h5 class="mb-0">{{ product.product_name }}</h5>
+                                        <small class="text-muted">${{ product.price }}</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="quantity{{ product.product_id }}" class="m-2">Quantity:</label>
+                                        <input
+                                            type="number"
+                                            id="quantity{{ product.product_id }}"
+                                            name="quantity"
+                                            min="1"
+                                            max="99"
+                                            value="1"
+                                            class="form-control form-control-sm"
+                                            style="width: 60px;"
+                                        />
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <form method="post" action="{% url 'cart:add_to_cart' product.product_id %}" class="d-flex align-items-center">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="redirect_url" value="{% url 'wishlist:wishlist_view' %}">
+                                            <button type="submit" class="btn btn-primary btn-sm m-1">Add to Cart</button>
+                                        </form>
+                                        <form method="post" action="{% url 'wishlist:remove_from_wishlist' product.product_id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm m-1">
+                                                <span class="bi bi-trash"></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Product Info Modal -->
+                        <div class="modal fade" id="productInfoModal{{ product.product_id }}" tabindex="-1" aria-labelledby="productInfoModalLabel{{ product.product_id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content custom-modal-content">
+                                    <div class="modal-header custom-modal-header">
+                                        <h5 class="modal-title custom-modal-title" id="productInfoModalLabel{{ product.product_id }}">{{ product.product_name }}</h5>
+                                        <button type="button" class="close text-white custom-close-button" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body custom-modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <img class="img-fluid rounded mb-4" src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                                            </div>
+                                            <div class="col-lg-7">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ product.product_name }}</h5>
+                                                        <p class="card-text">{{ product.description }}</p>
+                                                        <div class="d-flex flex-column">
+                                                            <div class="p-2 custom-info-item"><strong>Price:</strong> ${{ product.price }}</div>
+                                                            <div class="p-2 custom-info-item"><strong>Stock Quantity:</strong> {{ product.stock_quantity }}</div>
+                                                            <div class="p-2 custom-info-item"><strong>Status:</strong> {{ product.get_status_display }}</div>
+                                                            <div class="p-2 custom-info-item"><strong>Category:</strong> {{ product.product_category }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn custom-bottom-close-button" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info text-center" role="alert">
+                    You have no items in your wishlist.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/product-filter.js' %}"></script>
+
 {% endblock %}
