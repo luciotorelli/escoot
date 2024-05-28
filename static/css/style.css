@@ -258,6 +258,39 @@ main {
     outline-offset: -10px;
     -webkit-text-stroke: 0.7px black;
 }
+
+.newsletter-form {
+    background-color: #333738 !important;
+    border: 1px solid #444;
+}
+
+.newsletter-form input[type="text"],
+.newsletter-form input[type="email"] {
+    padding: 10px 20px;
+    border: 1px solid #555;
+    background-color: #fff;
+    color: #333;
+}
+
+.newsletter-form input[type="text"]::placeholder,
+.newsletter-form input[type="email"]::placeholder {
+    color: #bbb;
+}
+
+.newsletter-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.newsletter-form button:hover {
+    background-color: #0056b3;
+}
+
+
 /* ------------------------------------- Products page  */
 
 .products-main {

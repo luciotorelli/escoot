@@ -21,7 +21,22 @@
             </div>
         </div>
         
-        <div class="about-product"></div>
+        <div class="newsletter-div">
+            <div class="container mt-5">
+                <div class="row justify-content-center">              
+                    <div class="col-md-6">
+                        <form method="post" action="{% url 'home' %}" class="p-4 shadow rounded newsletter-form ">
+                            <h3 class="text-center text-white mb-1">Sign Up for Our Newsletter</h3>                          
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary mt-1">E-mail me offers!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="container mt-4 text-center">
             <div class="row">
