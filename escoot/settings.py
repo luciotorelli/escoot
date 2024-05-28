@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'checkout',
     'profiles',
+    'wishlist',
     'crispy_forms',
 ]
 

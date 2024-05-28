@@ -74,6 +74,14 @@
                 {% endif %}
             </form>
 
+            <!-- Wishlist Button (fixed at top left) -->
+            <form method="post" action="{% url 'wishlist:add_to_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-secondary" title="Add to Wishlist">
+                <span class="bi bi-heart"></span>
+              </button>
+            </form>
+
             <!-- Info Icon Button (fixed at top right) -->
             <button
               class="btn btn-info position-absolute top-0 end-0 m-2"
