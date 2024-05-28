@@ -65,9 +65,21 @@ def escooter_builder(request):
     """
     if request.method == 'POST':
         selected_products_ids = request.POST.getlist('selected_products')
-        # Logic to add products to the cart based on selected_products_ids
+        # Filter out empty values
+        selected_products_ids = [pid for pid in selected_products_ids if pid]
+        quantity = 1  # Default quantity for builder products
+        cart = request.session.get('cart', {})
+
+        for product_id in selected_products_ids:
+            product = get_object_or_404(Product, pk=product_id)
+            if product_id in cart:
+                cart[product_id] += quantity
+            else:
+                cart[product_id] = quantity
+
+        request.session['cart'] = cart
         messages.success(request, "Products added to cart successfully.")
-        return redirect('cart')  # Redirect to the cart page
+        return redirect('cart:cart')
     else:
         products = Product.objects.all().order_by('product_category', 'product_name')
         category_list = {}

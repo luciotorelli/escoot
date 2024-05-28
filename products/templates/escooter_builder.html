@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <!-- Form to the right -->
                 <h1 class="my text-center built-it-h1">Build it yourself</h1>
-                <form method="post">
+                <form method="post" action="{% url 'products:escooter_builder' %}">
                     {% csrf_token %}
                     <!-- Accordion -->
                     <div class="accordion custom-accordion mt-3" id="accordion">
@@ -37,7 +37,7 @@
                                                 <li class="list-group-item toggle-checkbox mb-2 rounded custom-list-item">
                                                     <!-- List item -->
                                                     <div class="form-check d-flex justify-content-between align-items-center">
-                                                        <input class="form-check-input mt-1 me-2" type="checkbox" name="selected_products" value="{{ product.id }}" id="product{{ product.id }}">
+                                                        <input class="form-check-input mt-1 me-2" type="checkbox" name="selected_products" value="{{ product.product_id }}" id="product{{ product.product_id }}">
                                                         <!-- Product name -->
                                                         <strong><span class="pr-2">{{ product.product_name }}<span></strong>
                                                         <!-- Price -->
@@ -61,7 +61,7 @@
                     </div>
                     <!-- Add to cart button -->
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-secondary mt-3 mr-2">Clear Selection</button>
+                        <button type="reset" class="btn btn-secondary mt-3 mr-2">Clear Selection</button>
                         <div class="spacer"></div>
                         <button type="submit" class="btn btn-primary mt-3 ml-2">Add to Cart</button>
                     </div>
@@ -84,18 +84,17 @@
                 </form>
             </div>
         </div>
-    </div>
     
-    {% if messages %}
-        <div class="container mt-4">
-            <ul class="list-group">
-                {% for message in messages %}
-                    <li class="list-group-item">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-
-    <script src="{% static 'js/builder_checkbox_toggle.js' %}"></script>
-
+        {% if messages %}
+            <div class="container mt-4">
+                <ul class="list-group">
+                    {% for message in messages %}
+                        <li class="list-group-item">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    
+        <script src="{% static 'js/builder_checkbox_toggle.js' %}"></script>
+    
 {% endblock %}
