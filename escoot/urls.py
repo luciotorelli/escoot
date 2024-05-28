@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import handler404
 
 urlpatterns = [
     path('', include('home.urls')),
@@ -26,3 +27,5 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),  
     path('profile/', include('profiles.urls')),    
 ]
+
+handler404 = 'escoot.views.handler404'
