@@ -366,8 +366,9 @@ main {
   }
 
 /* ------------------------------------- Checkout */
-.checkout-container {
+.checkout-section {
     background-color: #333738 !important;
+    padding: 5px;
 }
 
 .fieldset-label {
@@ -431,6 +432,8 @@ main {
     color: #000;
     border: 1px solid #000;
 }
+
+
 
 /* ------------------------------------- Checkout Success */
 
