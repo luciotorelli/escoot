@@ -499,6 +499,14 @@ main {
 
 /* ------------------------------------- 992px Media */
 
+@media (max-width: 991.99px) {
+    .mobile-footer-margin {
+        min-height: 15vh;
+        min-width: 100%;
+        display: block;
+    }
+}
+
 @media (min-width: 992px) {
 
   .navbar {
@@ -512,5 +520,10 @@ main {
   .searchbar {
     width: 25%;
     margin: 10px 10% 0 0;
+  }
+
+  .mobile-footer-margin {
+    min-height: 15%;
+    min-width: 100%;
   }
 }
