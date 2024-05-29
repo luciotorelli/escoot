@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
@@ -24,7 +23,7 @@ def apply_discount(request):
         data = json.loads(request.body)
         code = data.get('discount_code', '')
         try:
-            discount_code = DiscountCode.objects.get(code=code, active=True, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+            discount_code = DiscountCode.objects.get(code=code, active=True)
             discount_amount = discount_code.discount / 100
             message = f'Discount code {code} applied successfully!'
             return JsonResponse({'valid': True, 'discount_amount': discount_amount, 'message': message})
@@ -63,7 +62,7 @@ def checkout(request):
         if 'discount_code' in request.POST:
             code = request.POST.get('discount_code')
             try:
-                discount_code = DiscountCode.objects.get(code=code, active=True, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+                discount_code = DiscountCode.objects.get(code=code, active=True)
                 discount_amount = discount_code.discount / 100
             except DiscountCode.DoesNotExist:
                 messages.error(request, 'This discount code is invalid or expired.')

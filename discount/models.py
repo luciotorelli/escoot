@@ -1,11 +1,8 @@
 from django.db import models
-from django.utils import timezone
 from checkout.models import Order
 
 class DiscountCode(models.Model):
     code = models.CharField(max_length=20, unique=True)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
     discount = models.DecimalField(max_digits=5, decimal_places=2)  # Discount as a percentage
     active = models.BooleanField(default=True)
 
