@@ -1,3 +1,4 @@
+from decimal import Decimal
 import uuid
 
 from django.db import models
@@ -8,6 +9,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profiles.models import UserProfile
+
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -29,6 +31,8 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    discount_amount = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+    discount_code = models.CharField(max_length=20, null=True, blank=True)
 
     def _generate_order_number(self):
         """
@@ -39,14 +43,14 @@ class Order(models.Model):
     def update_total(self):
         """
         Update grand total each time a line item is added,
-        accounting for delivery costs.
+        accounting for delivery costs and discount.
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+            self.delivery_cost = self.order_total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE) / Decimal(100)
         else:
-            self.delivery_cost = 0
-        self.grand_total = self.order_total + self.delivery_cost
+            self.delivery_cost = Decimal(0)
+        self.grand_total = self.order_total + self.delivery_cost - Decimal(self.discount_amount)
         self.save()
 
     def save(self, *args, **kwargs):
@@ -75,6 +79,7 @@ class OrderLineItem(models.Model):
         """
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
+        self.order.update_total()
 
     def __str__(self):
         return f'Order {self.order.order_number}'

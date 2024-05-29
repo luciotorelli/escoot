@@ -106,6 +106,8 @@ def checkout(request):
             if discount_code:
                 discount_value = discount_amount * order.grand_total
                 order.grand_total -= discount_value
+                order.discount_amount = discount_value
+                order.discount_code = discount_code.code
                 order.save()
                 AppliedDiscount.objects.create(order=order, discount_code=discount_code, discount_amount=discount_value)
                 messages.success(request, f'Discount code {code} applied successfully!')
