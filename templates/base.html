@@ -1,4 +1,4 @@
-{% load static %} 
+{% load static %}
 {% load i18n %}
 
 <!DOCTYPE html>
@@ -80,8 +80,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>                                        
-                                    <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
+                                    {% if user.is_superuser %}
+                                        <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'discount:discount_list' %}">Discount management</a></li>
+                                    {% endif %}
                                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                 </ul>
                             </div>
@@ -92,7 +95,10 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                    {% if user.is_superuser %}
+                                        <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'discount:discount_list' %}">Discount management</a></li>
+                                    {% endif %}
                                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                 </ul>
                             </div>
