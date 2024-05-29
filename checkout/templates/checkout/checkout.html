@@ -22,7 +22,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 mb-2">
                 <div class="card checkout-section text-light">
                     <div class="card-header">
                         <p class="text-muted mb-0">Order Summary ({{ product_count }})</p>
@@ -60,13 +60,15 @@
                         <div class="row text-white text-right">
                             <div class="col-7 offset-2">
                                 <p class="my-0">Order Total:</p>
+                                <p class="my-0">Discount:</p>
                                 <p class="my-0">Delivery:</p>
                                 <p class="my-0">Grand Total:</p>
                             </div>
                             <div class="col-3">
-                                <p class="my-0" id="order-total">${{ total | floatformat:2 }}</p>
-                                <p class="my-0" id="delivery">${{ delivery | floatformat:2 }}</p>
-                                <p class="my-0"><strong id="grand-total">${{ grand_total | floatformat:2 }}</strong></p>
+                                <p class="my-0" id="order-total">&nbsp;${{ total | floatformat:2 }}</p>
+                                <p class="my-0" id="discount-amount">-${{ discount|default:0|floatformat:2 }}</p>
+                                <p class="my-0" id="delivery">&nbsp;${{ delivery | floatformat:2 }}</p>
+                                <p class="my-0"><strong id="grand-total">&nbsp;${{ grand_total | floatformat:2 }}</strong></p>
                             </div>
                         </div>
                     </div>

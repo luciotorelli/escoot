@@ -21,10 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const discountMessage = document.getElementById('discount-message');
             const grandTotalElement = document.getElementById('grand-total');
             const finalAmountElement = document.getElementById('final-amount');
+            const discountAmountElement = document.getElementById('discount-amount');
 
             // Reset the grand total to the original value before applying any new discount
             grandTotalElement.textContent = `$${originalGrandTotal.toFixed(2)}`;
             finalAmountElement.textContent = `$${originalGrandTotal.toFixed(2)}`;
+            discountAmountElement.textContent = '- $0.00'; // Reset discount amount
 
             if (data.valid) {
                 discountMessage.textContent = data.message;
@@ -35,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const discountAmount = data.discount_amount;
                 const grandTotal = parseFloat(grandTotalElement.textContent.replace('$', ''));
                 const newGrandTotal = grandTotal - (grandTotal * discountAmount);
-                
+
+                discountAmountElement.textContent = `-$${(grandTotal * discountAmount).toFixed(2)}`;
                 grandTotalElement.textContent = `$${newGrandTotal.toFixed(2)}`;
                 finalAmountElement.textContent = `$${newGrandTotal.toFixed(2)}`;
             } else {
