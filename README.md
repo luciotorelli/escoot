@@ -353,7 +353,21 @@ This project utilizes the MVC architecture to create a full-stack application. D
 
 ---
 
-## Technologies used
+## Technologies Used
+
+- [HTML](https://en.wikipedia.org/wiki/HTML) used for the main template contents.
+- [CSS](https://en.wikipedia.org/wiki/CSS) used for the styling, design and layout.
+- [Bootstrap](https://getbootstrap.com) used as the front-end CSS framework for responsiveness and pre-built components.
+- [JavaScript](https://www.javascript.com) used to dynamically display searches on the front-end, to save information to Session Storage, and to replace HTML content on the DOM.
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Python is a high-level, general-purpose language, used to code Django files.
+- [Gitpod](https://www.gitpod.io/about) - Gitpod is an open-source developer platform automating the provisioning of ready-to-code developer environments. Used to create the tests due to the limitation of local development.
+- [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform as a service supporting several programming languages, used to host the live application.
+- [Github and Git](https://docs.github.com/en/get-started/using-git/about-git) - Used to host the development of the project and version control using Git.
+- [Django](https://www.djangoproject.com) - used as the Python framework for the site.
+- [PostgreSQL](https://www.postgresql.org) - used as the relational database management.
+- [ElephantSQL](https://www.elephantsql.com) - used as the database host.
+- [Cloudinary](https://cloudinary.com) - used for hosting and serving static files.
+- [Stripe](https://stripe.com) - used to handle online payments and transactions.
 
 
 ---
@@ -365,7 +379,21 @@ This project utilizes the MVC architecture to create a full-stack application. D
 
 
 ### Browser Compatibility
-#### The app was manually tested on the following browsers. All forms, buttons, views, templates, scripts and functions worked as expected. Database updates are consistent for all browsers.
+
+The app was manually tested on the following browsers. All forms, buttons, views, templates, scripts, and functions worked as expected. Database updates are consistent for all browsers.
+
+| Browser        | Compatible | Notes                                                      |
+|----------------|------------|------------------------------------------------------------|
+| Chrome Desktop | Yes        | N/A                                                        |
+| Firefox Desktop| Yes        | N/A                                                        |
+| Safari Desktop | Yes        | N/A                                                        |
+| Edge Desktop   | Yes        | N/A                                                        |
+| Arc Desktop    | Yes        | N/A                                                        |
+| Brave Desktop  | Partially, see notes        | Brave shields may block some of the JS, AJAX or Form handling. Turning it off fixes it.|
+| Chrome Mobile  | Yes        | Scroll bar may be displayed differently       |
+| Safari Mobile  | Yes        | Scroll bar may be displayed differently       |
+| Brave Mobile   | Partially, see notes        | Brave shields may block some of the JS, AJAX or Form handling. Turning it off fixes it. |
+
 
 
 ### Automated Testing
@@ -384,8 +412,21 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 
 
 
-### CRUD (Create, read, update and delete)
-#### During automated and manual tests, the following data manipulation permission through front-end (not including admin) was confirmed working as expected.
+### CRUD (Create, Read, Update, Delete)
+
+#### During automated and manual tests, the following data manipulation operations through the front-end (not including admin) were confirmed to be working as expected.
+
+| Create           | Read             | Update           | Delete           |
+|:----------------:|:----------------:|:----------------:|:----------------:|
+| Product          | Product          | Product          | Product          |
+| Order            | Order            | Order            | Order            |
+| Order Item       | Order Item       | Order Item       | Order Item       |
+| User Profile     | User Profile     | User Profile     | X                |
+| Wishlist         | Wishlist         | X                | Wishlist         |
+| Contact Message  | Contact Message  | X                | X                |
+| Discount Code    | Discount Code    | Discount Code    | Discount Code    |
+| Applied Discount | Applied Discount | X                | Applied Discount |
+
 
 
 ### Validation
