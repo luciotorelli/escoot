@@ -103,9 +103,24 @@
                                 </ul>
                             </div>
                         {% else %}
-                            <a class="nav-link" href="{% url 'account_login' %}">
-                                <i class="bi bi-person-square fs-2 me-3 account-icon"></i>
-                            </a>
+                            <div class="dropdown d-none d-lg-block d-xl-block">
+                                <a class="nav-link" href="#" role="button" id="dropdownMenuLinkLoggedOut" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-box-arrow-in-right fs-2 me-3 account-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLinkLoggedOut">
+                                    <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup d-lg-none d-xl-none">
+                                <a class="nav-link" href="#" role="button" id="dropupMenuLinkLoggedOut" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-box-arrow-in-right fs-2 me-3 account-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLinkLoggedOut">
+                                    <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+                                </ul>
+                            </div>
                         {% endif %}
                     </span>
                     <!-- Shopping Cart Icon -->
@@ -147,7 +162,7 @@
 
     <main>{% block content %}{% endblock %}</main>
 
-    <footer class="d-flex justify-content-center footer d-none d-lg-flex">
+    <footer class="d-flex justify-content-center footer d-none d-lg-flex" style="margin-top: 20px;">
         <span class="text-muted">
             Copyright &copy; 2024
             <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
