@@ -28,6 +28,7 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('wishlist/', include('wishlist.urls')),
     path('contact/', include('contact.urls')),
+    path('discount/', include('discount.urls')),
 ]
 
 handler404 = 'escoot.views.handler404'
