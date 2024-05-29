@@ -39,28 +39,21 @@
                 <h1 class="d-none">E-scoot</h1>
             </div>
         </a>
-        <!-- Navbar -->
-
-        <!-- Offcanvas Sidebar -->
-        <div class="offcanvas offcanvas-start offcanvas-custom" tabindex="-1" id="sidebar">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title">Menu</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <span class="copyright text-muted">
-                    Copyright &copy; 2024 <br>
-                    <a class="github-link" href="https://github.com/luciotorelli/escoot" target="_blank">Project Portfolio 5 - Github Lúcio Torelli</a>
-                </span>
-            </div>
-        </div>
-
+        
         <div>
             <nav class="navbar navbar-mobile navbar-expand-lg navbar-dark fixed-bottom-mobile justify-space-around px-1">
                 <!-- Burger Menu Button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="dropup">
+                    <button class="navbar-toggler" type="button" id="dropupMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropupMenuButton">
+                        <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products:escooter_builder' %}">E-Scooter builder</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products:all_products' %}">Shop All Parts</a></li>
+                        <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                    </ul>
+                </div>
 
                 <div class="logo-desktop d-none d-lg-block" onclick="window.location.href = '{% url 'home' %}'">
                     <h1 class="d-none">E-scoot</h1>
@@ -79,36 +72,36 @@
                 <!-- Icons on the Right -->
                 <div class="d-flex">
                     <!-- Account Icon -->
-                        <span class="navbar-text">
-                            {% if user.is_authenticated %}
-                                <div class="dropdown d-none d-lg-block d-xl-block">
-                                    <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>                                        
-                                        <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-                                    </ul>
-                                </div>
-                                <div class="dropup d-lg-none d-xl-none">
-                                    <a class="nav-link" href="#" role="button" id="dropupMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-                                    </ul>
-                                </div>
-                            {% else %}
-                                <a class="nav-link" href="{% url 'account_login' %}">
-                                    <i class="bi bi-person-square fs-2 me-3 account-icon"></i>
+                    <span class="navbar-text">
+                        {% if user.is_authenticated %}
+                            <div class="dropdown d-none d-lg-block d-xl-block">
+                                <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
                                 </a>
-                            {% endif %}
-                        </span>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>                                        
+                                    <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup d-lg-none d-xl-none">
+                                <a class="nav-link" href="#" role="button" id="dropupMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-square fs-2 me-3 account-icon-authenticated"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'account_login' %}">
+                                <i class="bi bi-person-square fs-2 me-3 account-icon"></i>
+                            </a>
+                        {% endif %}
+                    </span>
                     <!-- Shopping Cart Icon -->
                     <span class="navbar-text position-relative me-3">
                         <a class="nav-cart-icon" href="{% url 'cart:cart' %}">
