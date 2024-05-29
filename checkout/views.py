@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.utils import timezone
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+from discount.models import DiscountCode, AppliedDiscount
 
 from products.models import Product
 from profiles.models import UserProfile
@@ -26,16 +28,27 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed right now. Please try again later.')
+        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    discount_amount = 0
+    discount_code = None
+
     if request.method == 'POST':
         cart = request.session.get('cart', {})
+
+        # Handle discount code
+        if 'discount_code' in request.POST:
+            code = request.POST.get('discount_code')
+            try:
+                discount_code = DiscountCode.objects.get(code=code, active=True, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+                discount_amount = discount_code.discount / 100
+            except DiscountCode.DoesNotExist:
+                messages.error(request, 'This discount code is invalid or expired.')
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -54,6 +67,14 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
+
+            if discount_code:
+                discount_value = (discount_amount * order.get_total())
+                order.total -= discount_value
+                order.save()
+                AppliedDiscount.objects.create(order=order, discount_code=discount_code, discount_amount=discount_value)
+                messages.success(request, f'Discount code {code} applied successfully!')
+
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -65,23 +86,19 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your cart wasn't found in our database. "
-                        "Please call us for assistance!")
-                    )
+                    messages.error(request, "One of the products in your cart wasn't found in our database. Please call us for assistance!")
                     order.delete()
                     return redirect(reverse('cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. \
-                Please double check your information.')
+            messages.error(request, 'There was an error with your form. Please double check your information.')
     else:
         cart = request.session.get('cart', {})
         if not cart:
             messages.error(request, "There's nothing in your cart at the moment")
-            return redirect(reverse('product:all_products'))
+            return redirect(reverse('products:all_products'))
 
         current_cart = cart_contents(request)
         total = current_cart['grand_total']
@@ -114,18 +131,17 @@ def checkout(request):
             order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. \
-            Did you forget to set it in your environment?')
+        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
+        'discount_amount': discount_amount,
     }
 
     return render(request, template, context)
-
 
 def checkout_success(request, order_number):
     """
@@ -155,9 +171,7 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
 
     if 'cart' in request.session:
         del request.session['cart']
