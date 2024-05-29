@@ -3,6 +3,8 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -15,6 +17,22 @@ from cart.contexts import cart_contents
 
 import stripe
 import json
+
+@csrf_exempt
+def apply_discount(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        code = data.get('discount_code', '')
+        try:
+            discount_code = DiscountCode.objects.get(code=code, active=True, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+            discount_amount = discount_code.discount / 100
+            message = f'Discount code {code} applied successfully!'
+            return JsonResponse({'valid': True, 'discount_amount': discount_amount, 'message': message})
+        except DiscountCode.DoesNotExist:
+            message = 'This discount code is invalid or expired.'
+            return JsonResponse({'valid': False, 'message': message})
+
+    return JsonResponse({'valid': False, 'message': 'Invalid request method.'})
 
 @require_POST
 def cache_checkout_data(request):
@@ -41,7 +59,7 @@ def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
 
-        # Handle discount code
+        # Handle discount code application
         if 'discount_code' in request.POST:
             code = request.POST.get('discount_code')
             try:
@@ -68,13 +86,6 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
 
-            if discount_code:
-                discount_value = (discount_amount * order.get_total())
-                order.total -= discount_value
-                order.save()
-                AppliedDiscount.objects.create(order=order, discount_code=discount_code, discount_amount=discount_value)
-                messages.success(request, f'Discount code {code} applied successfully!')
-
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -89,6 +100,22 @@ def checkout(request):
                     messages.error(request, "One of the products in your cart wasn't found in our database. Please call us for assistance!")
                     order.delete()
                     return redirect(reverse('cart'))
+
+            # Calculate grand total including discount
+            order.update_total()
+            if discount_code:
+                discount_value = discount_amount * order.grand_total
+                order.grand_total -= discount_value
+                order.save()
+                AppliedDiscount.objects.create(order=order, discount_code=discount_code, discount_amount=discount_value)
+                messages.success(request, f'Discount code {code} applied successfully!')
+
+            # Update Stripe PaymentIntent with the new amount
+            stripe.api_key = stripe_secret_key
+            intent = stripe.PaymentIntent.create(
+                amount=int(order.grand_total * 100),
+                currency=settings.STRIPE_CURRENCY,
+            )
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
@@ -138,7 +165,6 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        'discount_amount': discount_amount,
     }
 
     return render(request, template, context)
