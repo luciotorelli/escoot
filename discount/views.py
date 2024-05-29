@@ -62,4 +62,3 @@ def discount_list(request):
         'create_form': create_form,
         'edit_form': edit_form
     })
-

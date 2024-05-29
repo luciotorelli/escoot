@@ -93,14 +93,16 @@
                     <input type="hidden" name="update_discount" value="1">
                     <input type="hidden" name="id" id="edit-id">
                     <div class="mb-3">
-                        {{ edit_form.code|as_crispy_field }}
+                        <label for="edit-code" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="edit-code" name="code" required>
                     </div>
                     <div class="mb-3">
-                        {{ edit_form.discount|as_crispy_field }}
+                        <label for="edit-discount" class="form-label">Discount</label>
+                        <input type="number" class="form-control" id="edit-discount" name="discount" required>
                     </div>
                     <div class="mb-3 form-check">
-                        {{ edit_form.active|as_crispy_field }}
-                        <label for="edit-active">Active</label>
+                        <input type="checkbox" class="form-check-input" id="edit-active" name="active">
+                        <label for="edit-active" class="form-check-label">Active</label>
                     </div>
                 </form>
             </div>
@@ -111,6 +113,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
