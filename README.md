@@ -213,55 +213,117 @@ This project utilizes the MVC architecture to create a full-stack application. D
 
 ## Data Model
 
-<img src="readme-assets/data-model.webp" width="800px" />
-
 ### User Table
 
-| Key Type | Attribute      | Type       | Unique | Relationship |
-| ---------| -------------- | ---------- | ------ | ------------ |
-| Primary Key | user_id      | Integer    | Yes    | -            |
-| -        | full_name      | CharField  | No     | -            |
-| -        | username       | CharField  | Yes    | -            |
-| -        | email          | EmailField | Yes    | -            |
-| -        | password       | CharField  | No     | -            |
-| -        | address        | TextField  | No     | -            |
-| -        | phone_number   | CharField  | No     | -            |
-| -        | role           | CharField  | No     | -            |
+| Key Type   | Attribute           | Type       | Unique | Relationship |
+|------------|----------------------|------------|--------|--------------|
+| Primary Key | user_id             | Integer    | Yes    | -            |
+| -          | full_name            | CharField  | No     | -            |
+| -          | username             | CharField  | Yes    | -            |
+| -          | email                | EmailField | Yes    | -            |
+| -          | password             | CharField  | No     | -            |
+| -          | address              | TextField  | No     | -            |
+| -          | phone_number         | CharField  | No     | -            |
+| -          | role                 | CharField  | No     | -            |
 
 ### Product Table
 
-| Key Type | Attribute          | Type         | Unique | Relationship |
-| ---------| ------------------ | ------------ | ------ | ------------ |
-| Primary Key | product_id      | Integer      | Yes    | -            |
-| -        | product_name      | CharField    | No     | -            |
-| -        | description       | TextField    | No     | -            |
-| -        | price             | DecimalField | No     | -            |
-| -        | stock_quantity    | Integer      | No     | -            |
-| -        | image             | ImageField   | No     | -            |
-| -        | status            | CharField    | No     | -            |
-| -        | product_category  | CharField    | No     | -            |
+| Key Type   | Attribute            | Type         | Unique | Relationship |
+|------------|----------------------|--------------|--------|--------------|
+| Primary Key | product_id          | Integer      | Yes    | -            |
+| -          | product_name         | CharField    | No     | -            |
+| -          | description          | TextField    | No     | -            |
+| -          | price                | DecimalField | No     | -            |
+| -          | stock_quantity       | Integer      | No     | -            |
+| -          | image                | ImageField   | No     | -            |
+| -          | status               | CharField    | No     | -            |
+| -          | product_category     | CharField    | No     | -            |
 
 ### Order Table
 
-| Key Type | Attribute          | Type           | Unique | Relationship |
-| ---------| ------------------ | -------------- | ------ | ------------ |
-| Primary Key | order_id        | Integer        | Yes    | -            |
-| Foreign Key (User) | user_id | ForeignKey    | No     | User         |
-| -        | order_date         | DateTimeField  | No     | -            |
-| -        | total_amount       | DecimalField   | No     | -            |
-| -        | status             | CharField      | No     | -            |
-| Foreign Key (User) | delivery_address | ForeignKey | No  | User         |
+| Key Type     | Attribute         | Type            | Unique | Relationship |
+|--------------|-------------------|-----------------|--------|--------------|
+| Primary Key  | order_id          | Integer         | Yes    | -            |
+| Foreign Key  | user_profile_id   | ForeignKey      | No     | UserProfile  |
+| -            | full_name         | CharField       | No     | -            |
+| -            | email             | EmailField      | No     | -            |
+| -            | phone_number      | CharField       | No     | -            |
+| -            | country           | CountryField    | No     | -            |
+| -            | postcode          | CharField       | No     | -            |
+| -            | town_or_city      | CharField       | No     | -            |
+| -            | street_address1   | CharField       | No     | -            |
+| -            | street_address2   | CharField       | No     | -            |
+| -            | county            | CharField       | No     | -            |
+| -            | date              | DateTimeField   | No     | -            |
+| -            | delivery_cost     | DecimalField    | No     | -            |
+| -            | order_total       | DecimalField    | No     | -            |
+| -            | grand_total       | DecimalField    | No     | -            |
+| -            | original_cart     | TextField       | No     | -            |
+| -            | stripe_pid        | CharField       | No     | -            |
+| -            | discount_amount   | DecimalField    | No     | -            |
+| -            | discount_code     | CharField       | No     | -            |
 
 ### Order Item Table
 
-| Key Type | Attribute              | Type       | Unique | Relationship |
-| ---------| ---------------------- | ---------- | ------ | ------------ |
-| Primary Key | order_item_id      | Integer    | Yes    | -            |
-| Foreign Key (Order) | order_id  | ForeignKey | No     | Order        |
-| Foreign Key (Product) | product_id | ForeignKey | No   | Product      |
-| -        | quantity               | Integer    | No     | -            |
-| -        | product_name           | CharField  | No     | -            |
-| -        | product_description    | TextField  | No     | -            |
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | order_item_id     | Integer       | Yes    | -            |
+| Foreign Key  | order_id          | ForeignKey    | No     | Order        |
+| Foreign Key  | product_id        | ForeignKey    | No     | Product      |
+| -            | quantity          | Integer       | No     | -            |
+| -            | lineitem_total    | DecimalField  | No     | -            |
+
+### Contact Message Table
+
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | contact_message_id | Integer       | Yes    | -            |
+| -            | name              | CharField     | No     | -            |
+| -            | email             | EmailField    | No     | -            |
+| -            | message           | TextField     | No     | -            |
+| Foreign Key  | order_id          | ForeignKey    | No     | Order        |
+| -            | date_submitted    | DateTimeField | No     | -            |
+
+### Discount Code Table
+
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | discount_code_id  | Integer       | Yes    | -            |
+| -            | code              | CharField     | Yes    | -            |
+| -            | discount          | DecimalField  | No     | -            |
+| -            | active            | BooleanField  | No     | -            |
+
+### Applied Discount Table
+
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | applied_discount_id | Integer      | Yes    | -            |
+| OneToOne     | order_id          | OneToOneField | No     | Order        |
+| Foreign Key  | discount_code_id  | ForeignKey    | No     | DiscountCode |
+| -            | discount_amount   | DecimalField  | No     | -            |
+
+### UserProfile Table
+
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | user_profile_id   | Integer       | Yes    | -            |
+| OneToOne     | user_id           | OneToOneField | Yes    | User         |
+| -            | default_phone_number | CharField   | No     | -            |
+| -            | default_street_address1 | CharField | No     | -            |
+| -            | default_street_address2 | CharField | No     | -            |
+| -            | default_town_or_city | CharField    | No     | -            |
+| -            | default_county    | CharField     | No     | -            |
+| -            | default_postcode  | CharField     | No     | -            |
+| -            | default_country   | CountryField  | No     | -            |
+
+### Wishlist Table
+
+| Key Type     | Attribute         | Type          | Unique | Relationship |
+|--------------|-------------------|---------------|--------|--------------|
+| Primary Key  | wishlist_id       | Integer       | Yes    | -            |
+| OneToOne     | user_id           | OneToOneField | Yes    | User         |
+| ManyToMany   | products          | ManyToManyField | No   | Product      |
+| -            | created_at        | DateTimeField | No     | -            |
 
 
 
