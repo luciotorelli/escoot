@@ -77,18 +77,36 @@
                     {% csrf_token %}
                     <fieldset class="rounded p-4 mb-2 checkout-section text-light">
                         <legend class="fieldset-label small px-2 w-auto">Account Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
+                        <div class="mb-3">
+                            {{ order_form.full_name | as_crispy_field }}
+                        </div>      
+                        <div class="mb-3">                      
                         {{ order_form.email | as_crispy_field }}
+                        </div>
                     </fieldset>
                     <fieldset class="rounded p-4 mb-2 checkout-section text-light">
                         <legend class="fieldset-label small  px-2 w-auto">Delivery Info</legend>
-                        {{ order_form.phone_number | as_crispy_field }}
+                        <div class="mb-3">
+                            {{ order_form.phone_number | as_crispy_field }}
+                        </div>    
+                        <div class="mb-3">
                         {{ order_form.street_address1 | as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
                         {{ order_form.street_address2 | as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
                         {{ order_form.town_or_city | as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
                         {{ order_form.county | as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
                         {{ order_form.postcode | as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
                         {{ order_form.country | as_crispy_field }}
+                        </div>
                         <div class="form-check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
                                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
@@ -106,7 +124,7 @@
                         <legend class="fieldset-label small  px-2 w-auto">Discount Code</legend>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="discount-code" name="discount_code" placeholder="Enter discount code">
-                            <button type="button" class="btn btn-outline-secondary" id="apply-discount-btn" data-apply-discount-url="{% url 'apply_discount' %}">Apply</button>
+                            <button type="button" class="btn btn-primary" id="apply-discount-btn" data-apply-discount-url="{% url 'apply_discount' %}">Apply</button>
                         </div>
                         <div id="discount-message" class="text-success"></div>
                     </fieldset>
