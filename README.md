@@ -213,6 +213,10 @@ This project utilizes the MVC architecture to create a full-stack application. D
 
 ## Data Model
 
+### Data Model
+
+<img src="readme-assets/relational-database-schema.png" alt="Relational Database Schema" />
+
 ### User Table
 
 | Key Type   | Attribute           | Type       | Unique | Relationship |
@@ -226,6 +230,7 @@ This project utilizes the MVC architecture to create a full-stack application. D
 | -          | phone_number         | CharField  | No     | -            |
 | -          | role                 | CharField  | No     | -            |
 
+
 ### Product Table
 
 | Key Type   | Attribute            | Type         | Unique | Relationship |
@@ -238,6 +243,7 @@ This project utilizes the MVC architecture to create a full-stack application. D
 | -          | image                | ImageField   | No     | -            |
 | -          | status               | CharField    | No     | -            |
 | -          | product_category     | CharField    | No     | -            |
+
 
 ### Order Table
 
