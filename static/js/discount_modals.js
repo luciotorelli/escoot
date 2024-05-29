@@ -22,4 +22,35 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('delete-id').value = id;
         document.getElementById('delete-code').textContent = code;
     });
+
+    function handleFormSubmission(form) {
+        form.on('submit', function (event) {
+            event.preventDefault();  // Prevent default form submission
+            form.find('.text-danger').remove(); // Remove previous error messages
+
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        location.reload();  // Reload the page on success
+                    } else {
+                        // Show validation errors
+                        var errors = response.errors;
+                        for (var field in errors) {
+                            var fieldElement = form.find('[name="' + field + '"]');
+                            fieldElement.after('<div class="text-danger">' + errors[field][0].message + '</div>');
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Handle form submissions for create, edit, and delete forms
+    handleFormSubmission($('#createForm'));
+    handleFormSubmission($('#editForm'));
+    handleFormSubmission($('#deleteForm'));
 });

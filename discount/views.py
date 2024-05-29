@@ -30,30 +30,34 @@ def discount_list(request):
     discounts = DiscountCode.objects.all()
     
     if request.method == 'POST':
+        response_data = {'success': False, 'errors': {}}
+        
         if 'create_discount' in request.POST:
             create_form = DiscountCodeForm(request.POST)
             if create_form.is_valid():
                 create_form.save()
-                messages.success(request, 'Discount code created successfully.')
-                return redirect('discount:discount_list')
+                response_data['success'] = True
             else:
-                messages.error(request, 'Error creating discount code. Please check the form.')
+                response_data['errors'] = create_form.errors.get_json_data()
+            return JsonResponse(response_data)
+        
         elif 'update_discount' in request.POST:
             pk = request.POST.get('id')
             discount = get_object_or_404(DiscountCode, pk=pk)
             edit_form = DiscountCodeForm(request.POST, instance=discount)
             if edit_form.is_valid():
                 edit_form.save()
-                messages.success(request, 'Discount code updated successfully.')
-                return redirect('discount:discount_list')
+                response_data['success'] = True
             else:
-                messages.error(request, 'Error updating discount code. Please check the form.')
+                response_data['errors'] = edit_form.errors.get_json_data()
+            return JsonResponse(response_data)
+        
         elif 'delete_discount' in request.POST:
             pk = request.POST.get('id')
             discount = get_object_or_404(DiscountCode, pk=pk)
             discount.delete()
-            messages.success(request, 'Discount code deleted successfully.')
-            return redirect('discount:discount_list')
+            response_data['success'] = True
+            return JsonResponse(response_data)
     
     create_form = DiscountCodeForm()
     edit_form = DiscountCodeForm()

@@ -60,14 +60,16 @@
                     {% csrf_token %}
                     <input type="hidden" name="create_discount" value="1">
                     <div class="mb-3">
-                        {{ create_form.code|as_crispy_field }}
+                        <label for="create-code" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="create-code" name="code" required>
                     </div>
                     <div class="mb-3">
-                        {{ create_form.discount|as_crispy_field }}
+                        <label for="create-discount" class="form-label">Discount</label>
+                        <input type="number" class="form-control" id="create-discount" name="discount" required>
                     </div>
                     <div class="mb-3 form-check">
-                        {{ create_form.active|as_crispy_field }}
-                        <label for="id_active">Active</label>
+                        <input type="checkbox" class="form-check-input" id="create-active" name="active">
+                        <label for="create-active" class="form-check-label">Active</label>
                     </div>
                 </form>
             </div>
@@ -78,6 +80,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -138,6 +142,7 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
 
