@@ -378,10 +378,6 @@ main {
     color: #0d6efd;
 }
 
-.btn-outline-secondary, .btn-primary {
-    border-radius: 50px;
-}
-
 .btn-outline-secondary:hover {
     color: #fff;
     background-color: #6c757d;
