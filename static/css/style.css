@@ -41,6 +41,10 @@
     background-color: #1a6200 !important;
 }
 
+.form-control {
+    border-radius: .375rem !important;
+}
+
 
 /* ------------------------------------- Toasts */
 
