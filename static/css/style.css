@@ -454,6 +454,39 @@ main {
 }
 
 
+/* ------------------------------------- Discount manager page */
+
+.discount-container {
+    background-color: #202020;
+    color: #ffffff;
+}
+
+.modal-dark {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.btn-close-white {
+    filter: invert(1);
+}
+
+.form-control-dark {
+    background-color: #444444;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+.form-control-dark:focus {
+    background-color: #555555;
+    color: #ffffff;
+    border-color: #777777;
+}
+
+.form-check-label {
+    color: #ffffff;
+}
+
+
 /* ------------------------------------- Footer */
 
 .footer {
