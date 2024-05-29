@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'profiles',
     'wishlist',
     'crispy_forms',
+    'contact',
 ]
 
 CLOUDINARY_STORAGE = {

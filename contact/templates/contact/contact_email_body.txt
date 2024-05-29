@@ -1,0 +1,11 @@
+<!-- contact/templates/contact/contact_email_body.txt -->
+You have received a new message from {{ name }} ({{ email }}).
+
+{% if order_number %}
+Order Number: {{ order_number }}
+{% endif %}
+
+Message:
+{{ message }}
+
+
