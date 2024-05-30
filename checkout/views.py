@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from decimal import Decimal
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -21,15 +22,33 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'cart': json.dumps(request.session.get('cart', {})),
-            'save_info': request.POST.get('save_info'),
+        # Retrieve and serialize the cart data
+        cart = json.dumps(request.session.get('cart', {}))
+        save_info = request.POST.get('save_info')
+
+        # Retrieve discount information from the session
+        discount_code = request.session.get('discount_code')
+        discount_amount = request.session.get('discount_amount', 0)
+
+        # Prepare metadata to be added to the PaymentIntent
+        metadata = {
+            'cart': cart,
+            'save_info': save_info,
             'username': request.user,
-        })
+        }
+
+        # Add discount information to metadata if available
+        if discount_code:
+            metadata['discount_code'] = discount_code
+            metadata['discount_amount'] = str(discount_amount)
+
+        stripe.PaymentIntent.modify(pid, metadata=metadata)
+
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
+
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -37,6 +56,10 @@ def checkout(request):
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
+
+        # Retrieve discount information from the session
+        discount_code = request.session.get('discount_code')
+        discount_amount = Decimal(request.session.get('discount_amount', 0))
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -55,6 +78,10 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
+
+            # Apply the discount to the order
+            order.discount_code = discount_code
+            order.discount_amount = discount_amount
             order.save()
 
             for item_id, item_data in cart.items():
@@ -79,6 +106,11 @@ def checkout(request):
             intent = stripe.PaymentIntent.create(
                 amount=int(order.grand_total * 100),
                 currency=settings.STRIPE_CURRENCY,
+                metadata={
+                    'order_id': order.order_number,
+                    'discount_code': discount_code,
+                    'discount_amount': str(discount_amount)
+                }
             )
 
             request.session['save_info'] = 'save-info' in request.POST

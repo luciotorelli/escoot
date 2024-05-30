@@ -52,14 +52,18 @@ class StripeWH_Handler:
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
 
+        # Retrieve discount information from the metadata
+        discount_code = intent.metadata.get('discount_code')
+        discount_amount = Decimal(intent.metadata.get('discount_amount', 0))
+
         # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
         )
 
-        billing_details = stripe_charge.billing_details # updated
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2) # updated
+        grand_total = round(stripe_charge.amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -125,6 +129,8 @@ class StripeWH_Handler:
                     county=shipping_details.address.state,
                     original_cart=cart,
                     stripe_pid=pid,
+                    discount_code=discount_code,
+                    discount_amount=discount_amount 
                 )
                 for item_id, item_data in json.loads(cart).items():
                     product = Product.objects.get(product_id=item_id)
@@ -143,6 +149,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
+
 
     def handle_payment_intent_payment_failed(self, event):
         """
