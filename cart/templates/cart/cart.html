@@ -61,7 +61,7 @@
           {% if discount_amount %}
             <p class="card-text">Discount: -${{ discount_amount|floatformat:2 }}</p>
           {% endif %}
-          <p class="card-text">Shipping: Calculated at checkout</p>
+          <p class="card-text">Shipping: ${{ delivery|floatformat:2 }}</p>
           <h5 class="card-title">Total: ${{ grand_total|floatformat:2 }}</h5>
 
           <!-- Discount Code Form -->
