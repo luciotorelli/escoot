@@ -18,7 +18,6 @@ E-scoot is a Django application designed as an ecommerce website.Tailored specif
 4. [Wireframes](https://github.com/luciotorelli/escoot#wireframes)
 5. [Project Management and Planning](https://github.com/luciotorelli/escoot#project-management-and-planning)
 6. [UX](https://github.com/luciotorelli/escoot#ux)
-7. [Features](https://github.com/luciotorelli/escoot#features)
 8. [Technologies Used](https://github.com/luciotorelli/escoot#technologies-used)
 9. [Testing](https://github.com/luciotorelli/escoot#testing)
 10. [Deployment](https://github.com/luciotorelli/escoot#deployment)
@@ -386,34 +385,14 @@ This project utilizes the MVC architecture to create a full-stack application. D
 | ManyToMany   | products          | ManyToManyField | No   | Product      |
 | -            | created_at        | DateTimeField | No     | -            |
 
-
-
-## UX
-
-### Wireframes
-
-
-### Color palette
-
-<img src="readme-assets/color-palette.png" alt="Color Palette for the app/site" width="800px" />
-
-### Font
-
-
-
-## Features
-
-### Future Features
-#### Some features were considered for implementation of this project. However, due to the time constrains and importance those were added to future features instead.
-
 ---
 
 ## Technologies Used
 
 - [HTML](https://en.wikipedia.org/wiki/HTML) used for the main template contents.
-- [CSS](https://en.wikipedia.org/wiki/CSS) used for the styling, design and layout.
+- [CSS](https://en.wikipedia.org/wiki/CSS) used for the styling, design, and layout.
 - [Bootstrap](https://getbootstrap.com) used as the front-end CSS framework for responsiveness and pre-built components.
-- [JavaScript](https://www.javascript.com) used to dynamically display searches on the front-end, to save information to Session Storage, and to replace HTML content on the DOM.
+- [JavaScript](https://www.javascript.com) used to dynamically display searches on the front-end, save information to Session Storage, and replace HTML content on the DOM.
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Python is a high-level, general-purpose language, used to code Django files.
 - [Gitpod](https://www.gitpod.io/about) - Gitpod is an open-source developer platform automating the provisioning of ready-to-code developer environments. Used to create the tests due to the limitation of local development.
 - [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform as a service supporting several programming languages, used to host the live application.
@@ -424,17 +403,23 @@ This project utilizes the MVC architecture to create a full-stack application. D
 - [Cloudinary](https://cloudinary.com) - used for hosting and serving static files.
 - [Stripe](https://stripe.com) - used to handle online payments and transactions.
 
-
 ---
 
 ## Testing
 
 ### Test Cases
-
-
+| Case | Page Link | Achieved |
+| :---:   | :---: | :---: |
+| As a Buyer, I want to purchase an e-scooter by selecting only the parts and upgrades I require for my unique case so that I can customize my purchase to meet my specific needs. | [Product Page](https://example.com/products) | Yes |
+| As a Buyer who already owns an e-scooter, I want to purchase parts separately from the main product so that I can replace or upgrade specific components without buying a new scooter. | [Parts Page](https://example.com/parts) | Yes |
+| As a Buyer, I want to see my addresses, edit them, or delete them as required so that I can manage my shipping information efficiently. | [Profile Page](https://example.com/profile) | Yes |
+| As a Buyer, I want to see the status of my order and view past orders so that I can track my purchases and review my order history. | [Orders Page](https://example.com/orders) | Yes |
+| As a Buyer, I want to add products to my cart, view the subtotal, edit quantities, or remove products as required so that I can easily manage my shopping experience. | [Cart Page](https://example.com/cart) | Yes |
+| As the Site Owner, I want a modern and simple-to-navigate website to sell my products so that I can provide a positive user experience for potential buyers. | [Homepage](https://example.com) | Yes |
+| As the Site Owner, I want to view the orders placed so that I can efficiently process and ship the products to the buyer. | [Admin Orders Page](https://example.com/admin/orders) | Yes |
+| As the Site Owner, I want to ensure the security and privacy of user information by implementing authentication and data protection measures to safeguard sensitive data so that users can trust the platform. | [Admin Settings Page](https://example.com/admin/settings) | Yes |
 
 ### Browser Compatibility
-
 The app was manually tested on the following browsers. All forms, buttons, views, templates, scripts, and functions worked as expected. Database updates are consistent for all browsers.
 
 | Browser        | Compatible | Notes                                                      |
@@ -444,16 +429,10 @@ The app was manually tested on the following browsers. All forms, buttons, views
 | Safari Desktop | Yes        | N/A                                                        |
 | Edge Desktop   | Yes        | N/A                                                        |
 | Arc Desktop    | Yes        | N/A                                                        |
-| Brave Desktop  | Partially, see notes        | Brave shields may block some of the JS, AJAX or Form handling. Turning it off fixes it.|
-| Chrome Mobile  | Yes        | Scroll bar may be displayed differently       |
-| Safari Mobile  | Yes        | Scroll bar may be displayed differently       |
-| Brave Mobile   | Partially, see notes        | Brave shields may block some of the JS, AJAX or Form handling. Turning it off fixes it. |
-
-
-
-### Automated Testing
-
-
+| Brave Desktop  | Partially  | Brave shields may block some of the JS, AJAX, or form handling. Turning it off fixes it.|
+| Chrome Mobile  | Yes        | Scroll bar may be displayed differently                    |
+| Safari Mobile  | Yes        | Scroll bar may be displayed differently                    |
+| Brave Mobile   | Partially  | Brave shields may block some of the JS, AJAX, or form handling. Turning it off fixes it. |
 
 ### Issues
 
@@ -474,51 +453,89 @@ This document lists the issues and bugs that have been fixed in the project.
 | 9 | [Commit Link](https://github.com/luciotorelli/escoot/commit/ce8c392) | Fix webhook error "Cannot resolve keyword 'id' into field" | Webhook returns an error 'Cannot resolve keyword 'id' into field' due to incorrect keyword references. | Ensured that the webhook handler correctly references existing fields and models in the database schema, avoiding incorrect keyword references. |
 | 10 | [Commit Link](https://github.com/luciotorelli/escoot/commit/50593ce) | Fix success page text breaks | Duplicate entry for the success page text breaks order summary. | Adjusted the CSS styling to ensure proper word wrapping and alignment within the container elements. |
 
-
-<img src="readme-assets/bugs.jpg" width="1000px" />
-
-
 ### Feedback
 
-
-
-### CRUD (Create, Read, Update, Delete)
-
-#### During automated and manual tests, the following data manipulation operations through the front-end (not including admin) were confirmed to be working as expected.
-
-| Create           | Read             | Update           | Delete           |
-|:----------------:|:----------------:|:----------------:|:----------------:|
-| Product          | Product          | Product          | Product          |
-| Order            | Order            | Order            | Order            |
-| Order Item       | Order Item       | Order Item       | Order Item       |
-| User Profile     | User Profile     | User Profile     | X                |
-| Wishlist         | Wishlist         | X                | Wishlist         |
-| Contact Message  | Contact Message  | X                | X                |
-| Discount Code    | Discount Code    | Discount Code    | Discount Code    |
-| Applied Discount | Applied Discount | X                | Applied Discount |
-
-
+| Feedback | Implemented/Fixed  | Notes |
+| :---:   | :---: | :---: |
+| Didn't get a confirmation message when I submitted a form | Yes  | Added toast notifications to confirm form submissions. |
+| It's hard to tell if I'm logged in or not | Yes  | Added a welcome message for logged-in users and a toast notification upon login. |
+| The button order on mobile was confusing, made me click "select another part" by mistake | Yes  | Reordered buttons based on mobile views to improve user experience. |
+| Would like to add more than one part per product | No  | Added to future features |
+| Separate models for products and services would be great | No  | Added to future features |
+| Buttons looked inconsistent | Yes  | Standardized button styles across the app with consistent hover effects. |
+| The desktop navbar is usually placed at the top or left | Yes  | Adjusted the navbar for mobile at the bottom and for desktop to the left. |
+| Display all orders in one single page | Yes  | Divided the order page into sections to display all orders of the current logged-in user. |
 
 ### Validation
 
+- The code for all Python files (aside from settings.py) was tested against [provided CI Python Linter](https://pep8ci.herokuapp.com).
+- The code for all HTML files was tested against [W3C Markup validation service](https://validator.w3.org/).
+- The code for the CSS file was tested against [W3C CSS validation service](https://jigsaw.w3.org/css-validator/).
+- The code for the JavaScript file was tested against [JShint](https://jshint.com/).
+
+No errors were displayed at final deployment.
 
 ### Lighthouse
 
-<br>
+Google Chrome built-in Lighthouse was used to test all pages, which returned an acceptable average score of 92 for all categories.
+
+---
 
 ### Deployment
 
+1. **Database Setup**: Begin by configuring the database. If you're using PostgreSQL, you can set up a PostgreSQL database using [ElephantSQL](https://www.elephantsql.com). Follow these steps:
+   - Sign up for an account on ElephantSQL.
+   - Create a new instance with a unique name, like your project name.
+   - Choose the Tiny Turtle (Free) plan.
+   - Select the region and data center closest to you.
+   - Once created, note down the database URL and password.
 
----
+2. **Cloudinary API Integration**: To store media assets online, integrate the [Cloudinary API](https://cloudinary.com) into your application:
+   - Create a Cloudinary account.
+   - On your Cloudinary Dashboard, obtain your API Environment Variable.
+   - Copy the API key, removing `CLOUDINARY_URL=` to leave only the key.
+   - Add to your environment variable "DATABASE_URL"
 
-## Credits
+3. **Deploying on Heroku**:
+   - Sign up for a Heroku account if you haven't already.
+   - Create a new app from your Heroku Dashboard.
+   - Access your app's settings and set up environment variables:
+      - `DATABASE_URL`: Your PostgreSQL database URL.
+      - `SECRET_KEY`: Your chosen secret key.
+      - `CLOUDINARY_URL`: Your Cloudinary API key.
+      - `DEBUG_VALUE`: True or False.
+      - `STRIPE_PUBLIC_KEY`: Your Stripe public key.
+      - `STRIPE_SECRET_KEY`: Your Stripe secret key.
+      - `STRIPE_WH_SECRET`: Your Stripe webhook secret.
+      - `MAILCHIMP_API_KEY`: Your Mailchimp API key.
+      - `MAILCHIMP_LIST_ID`: Your Mailchimp list ID.
+   - Ensure you have the following files in your project:
+      - `requirements.txt`: List your project's requirements.
+      - `Procfile`: Create this file with the content `web: gunicorn app_name.wsgi`.
+   - Connect your GitHub repository to your Heroku app.
+   - Choose automatic deployment from Heroku or manually push your code.
 
-### Special Thanks!
+4. **Local Deployment for Testing**:
+   - Clone or fork the project repository to your local machine.
+   - Install project requirements using `pip3 install -r requirements.txt`.
+   - Create an `env.py` file at the root level, adding the following environment variables for local testing:
 
+     ```python
+     import os
 
-### Resources use
+     os.environ["DATABASE_URL"] = "your_database_url"
+     os.environ["SECRET_KEY"] = "your_secret_key"
+     os.environ["CLOUDINARY_URL"] = "your_cloudinary_url"
+     os.environ["DEBUG_VALUE"] = "True"
+     os.environ["STRIPE_PUBLIC_KEY"] = "your_stripe_public_key"
+     os.environ["STRIPE_SECRET_KEY"] = "your_stripe_secret_key"
+     os.environ["STRIPE_WH_SECRET"] = "your_stripe_wh_secret"
+     os.environ["MAILCHIMP_API_KEY"] = "your_mailchimp_api_key"
+     os.environ["MAILCHIMP_LIST_ID"] = "your_mailchimp_list_id"
+     ```
 
+   - Run the Django app: `python3 manage.py runserver`.
+   - Perform migrations: `python3 manage.py makemigrations`, then `python3 manage.py migrate`.
+   - Create a superuser for local testing: `python3 manage.py createsuperuser`.
 
-### Imported templates/libraries
-
----
+5. In case you would like to fork, click the "Fork" button at the top right of the repository's page. This creates a copy of the repository under your GitHub account and then you can follow the steps above for local or Heroku deployment.
