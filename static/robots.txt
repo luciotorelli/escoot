@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /admin/
+Sitemap: https://escoot-727e056426fa.herokuapp.com/sitemap.xml
