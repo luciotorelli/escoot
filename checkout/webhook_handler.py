@@ -127,7 +127,7 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 for item_id, item_data in json.loads(cart).items():
-                    product = Product.objects.get(id=item_id)
+                    product = Product.objects.get(product_id=item_id)
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
