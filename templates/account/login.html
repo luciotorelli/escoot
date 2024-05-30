@@ -7,54 +7,72 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container my-5 pt-2">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form class="login-form main-div-shadow mt-3" id="login_form" method="post" action="{% url 'account_login' %}">
-        {% csrf_token %}
+      <div class="card grey-background mt-3">
+        <div class="card-body">
+          <form class="login-form" id="login_form" method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
 
-        <h2 class="text-center mb-4">{% trans "Login" %}</h2>
+            <h2 class="text-center mb-4">{% trans "Login" %}</h2>
 
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-          {% for err in form.non_field_errors %}
-            {{ err }}
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {% for err in form.non_field_errors %}
+                {{ err }}
+              {% endfor %}
             </div>
-            {{ form.login }}
-          </div>
-          {% if form.login.errors %}
-          <div class="text-danger">{{ form.login.errors }}</div>
-          {% endif %}
-        </div>
+            {% endif %}
 
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.login }}
+              </div>
+              {% if form.login.errors %}
+              <div class="text-danger">{{ form.login.errors }}</div>
+              {% endif %}
             </div>
-            {{ form.password }}
+
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.password }}
+              </div>
+              {% if form.password.errors %}
+              <div class="text-danger">{{ form.password.errors }}</div>
+              {% endif %}
+            </div>
+
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+            <div class="text-center">
+              <button class="btn btn-primary my-4" type="submit">{% trans "Sign In" %}</button>
+            </div>
+          </form>
+
+          <!-- Reset Password Link Section -->
+          <div class="text-center mt-3">
+            <a href="{% url 'account_reset_password' %}" class="custom-link text-reset">
+              <i class="bi bi-key"></i> {% trans "Forgot Password?" %}
+            </a>
           </div>
-          {% if form.password.errors %}
-          <div class="text-danger">{{ form.password.errors }}</div>
-          {% endif %}
-        </div>
 
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-
-        <div class="text-center">
-          <button class="btn btn-primary mt-3" type="submit">{% trans "Sign In" %}</button> <!-- Added mt-3 class for margin top -->
+          <!-- Sign-up Link Section -->
+          <div class="text-center mt-3 mb-5">
+            <a href="{% url 'account_signup' %}" class="custom-link text-reset">
+              <i class="bi bi-person-plus"></i> {% trans "Create New Account" %}
+            </a>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

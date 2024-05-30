@@ -3,72 +3,92 @@
 {% block head_title %}Signup{% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container my-5 pt-2">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form id="signup_form" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
-        {% csrf_token %}
+      <div class="card grey-background mt-3">
+        <div class="card-body">
+          <form id="signup_form" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <h2 class="text-center mb-4">Sign Up</h2>
+            <h2 class="text-center mb-4">{% trans "Sign Up" %}</h2>
 
-        <p class="text-center">Already have an account? Then please <a href="{{ login_url }}">log-in</a>.</p>
-
-        {% if form.non_field_errors %}
-        <div class="text-center text-danger">{{ form.non_field_errors }}</div>
-        {% endif %}
-
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {% for err in form.non_field_errors %}
+                {{ err }}
+              {% endfor %}
             </div>
-            {{ form.username }}
-          </div>
-          {% if form.username.errors %}
-          <div class="text-center text-danger">{{ form.username.errors }}</div>
-          {% endif %}
-        </div>
+            {% endif %}
 
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-at fa-fw" aria-hidden="true"></i></span>
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.username }}
+              </div>
+              {% if form.username.errors %}
+              <div class="text-danger">{{ form.username.errors }}</div>
+              {% endif %}
             </div>
-            {{ form.email }}
-          </div>
-          {% if form.email.errors %}
-          <div class="text-center text-danger">{{ form.email.errors }}</div>
-          {% endif %}
-        </div>
 
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-at fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.email }}
+              </div>
+              {% if form.email.errors %}
+              <div class="text-danger">{{ form.email.errors }}</div>
+              {% endif %}
             </div>
-            {{ form.password1 }}
-          </div>
-          {% if form.password1.errors %}
-          <div class="text-center text-danger">{{ form.password1.errors }}</div>
-          {% endif %}
-        </div>
 
-        <div class="form-group mb-3">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.password1 }}
+              </div>
+              {% if form.password1.errors %}
+              <div class="text-danger">{{ form.password1.errors }}</div>
+              {% endif %}
             </div>
-            {{ form.password2 }}
-          </div>
-          {% if form.password2.errors %}
-          <div class="text-center text-danger">{{ form.password2.errors }}</div>
-          {% endif %}
-        </div>
 
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-group mb-3">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                </div>
+                {{ form.password2 }}
+              </div>
+              {% if form.password2.errors %}
+              <div class="text-danger">{{ form.password2.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary">{% trans "Register" %}</button>
+            </div>
+          </form>
+
+          <!-- Forgot Password Link Section -->
+          <div class="text-center mt-3">
+            <a href="{% url 'account_reset_password' %}" class="custom-link text-reset">
+              <i class="bi bi-key"></i> {% trans "Forgot Password?" %}
+            </a>
+          </div>
+
+          <!-- Sign-in Link Section -->
+          <div class="text-center mt-3 mb-5">
+            <a href="{{ login_url }}" class="custom-link text-reset">
+              <i class="bi bi-box-arrow-in-right"></i> {% trans "Already have an account? Log in here" %}
+            </a>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
