@@ -16,7 +16,6 @@
     <meta name="twitter:image" content="{% static 'images/all-products-hero.jpg' %}">
 {% endblock %}
 
-
 {% block page_header %}
 <div class="container header-container">
   <div class="row">
@@ -52,81 +51,87 @@
 
     <!-- Product Listing -->
     <div class="row" id="product_listing">
-      {% for product in products %}
-      <div class="col-md-3 mb-3">
-        <div class="card products-card position-relative">
-          <!-- Product Image -->
-          <img
-            src="{{ product.image.url }}"
-            class="card-img-top"
-            alt="{{ product.product_name }}"
-          />
+      {% if products %}
+        {% for product in products %}
+          <div class="col-md-3 mb-3">
+            <div class="card products-card position-relative">
+              <!-- Product Image -->
+              <img
+                src="{{ product.image.url }}"
+                class="card-img-top"
+                alt="{{ product.product_name }}"
+              />
 
-          <div class="card-body text-center">
-            <!-- Product Name -->
-            <h5 class="card-title">{{ product.product_name }}</h5>
+              <div class="card-body text-center">
+                <!-- Product Name -->
+                <h5 class="card-title">{{ product.product_name }}</h5>
 
-            <!-- Price -->
-            <p class="card-text">${{ product.price }}</p>
+                <!-- Price -->
+                <p class="card-text">${{ product.price }}</p>
 
-            <form method="post" action="{% url 'cart:add_to_cart' product.product_id %}">
-                {% csrf_token %}
-                <!-- Quantity Picker -->
-                <label for="quantity{{ product.product_id }}">Quantity:</label>
-                <input
-                  type="number"
-                  id="quantity{{ product.product_id }}"
-                  name="quantity"
-                  min="1"
-                  max="99"
-                  value="1"
-                  class="form-control w-50 m-auto mb-2"
-                />
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
-                {% if request.user.is_superuser %}
-                  <a href="{% url 'products:edit_product' product.product_id %}" class="btn btn-warning mb-2">Edit</a>
-                  <a href="{% url 'products:delete_product' product.product_id %}" class="btn btn-danger mb-2">Delete</a>
+                <form method="post" action="{% url 'cart:add_to_cart' product.product_id %}">
+                    {% csrf_token %}
+                    <!-- Quantity Picker -->
+                    <label for="quantity{{ product.product_id }}">Quantity:</label>
+                    <input
+                      type="number"
+                      id="quantity{{ product.product_id }}"
+                      name="quantity"
+                      min="1"
+                      max="99"
+                      value="1"
+                      class="form-control w-50 m-auto mb-2"
+                    />
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+                    {% if request.user.is_superuser %}
+                      <a href="{% url 'products:edit_product' product.product_id %}" class="btn btn-warning mb-2">Edit</a>
+                      <a href="{% url 'products:delete_product' product.product_id %}" class="btn btn-danger mb-2">Delete</a>
+                    {% endif %}
+                </form>
+
+                <!-- Wishlist Button (fixed at top left) -->
+                {% if product.product_id in wishlist_product_ids %}
+                  <form method="post" action="{% url 'wishlist:remove_from_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary btn-custom-wishlist text-danger" title="Remove from Wishlist">
+                      <span class="bi bi-heart-fill"></span>
+                    </button>
+                  </form>
+                {% else %}
+                  <form method="post" action="{% url 'wishlist:add_to_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary btn-custom-wishlist" title="Add to Wishlist">
+                      <span class="bi bi-heart"></span>
+                    </button>
+                  </form>
                 {% endif %}
-            </form>
 
-            <!-- Wishlist Button (fixed at top left) -->
-            {% if product.product_id in wishlist_product_ids %}
-              <form method="post" action="{% url 'wishlist:remove_from_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-secondary btn-custom-wishlist text-danger" title="Remove from Wishlist">
-                  <span class="bi bi-heart-fill"></span>
+                <!-- Info Icon Button (fixed at top right) -->
+                <button
+                  class="btn btn-info position-absolute top-0 end-0 m-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#productInfoModal"
+                  data-product-name="{{ product.product_name }}"
+                  data-product-description="{{ product.description }}"
+                  data-product-price="{{ product.price }}"
+                  data-product-stock-quantity="{{ product.stock_quantity }}"
+                  data-product-status="{{ product.get_status_display }}"
+                  data-product-category="{{ product.product_category }}"
+                  data-product-image="{{ product.image.url }}"              
+                  title="More Info"
+                >
+                  <span class="bi bi-info-circle"></span>
                 </button>
-              </form>
-            {% else %}
-              <form method="post" action="{% url 'wishlist:add_to_wishlist' product.product_id %}" class="position-absolute top-0 start-0 m-2">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-secondary btn-custom-wishlist" title="Add to Wishlist">
-                  <span class="bi bi-heart"></span>
-                </button>
-              </form>
-            {% endif %}
-
-            <!-- Info Icon Button (fixed at top right) -->
-            <button
-              class="btn btn-info position-absolute top-0 end-0 m-2"
-              data-bs-toggle="modal"
-              data-bs-target="#productInfoModal"
-              data-product-name="{{ product.product_name }}"
-              data-product-description="{{ product.description }}"
-              data-product-price="{{ product.price }}"
-              data-product-stock-quantity="{{ product.stock_quantity }}"
-              data-product-status="{{ product.get_status_display }}"
-              data-product-category="{{ product.product_category }}"
-              data-product-image="{{ product.image.url }}"              
-              title="More Info"
-            >
-              <span class="bi bi-info-circle"></span>
-            </button>
-          </div>
+              </div>
+            </div>
+          </div>      
+        {% endfor %}
+      {% else %}
+        <div class="col-12 text-center">
+          <p class="text-muted">No products found matching your search criteria. Please try different filters or search terms.</p>
         </div>
-      </div>      
-      {% endfor %}
+      {% endif %}
     </div>
   </div>
 </div>
