@@ -67,12 +67,12 @@
                                 <p class="my-0"><strong>Grand Total:</strong></p>
                             </div>
                             <div class="col-3">
-                                <p class="my-0" id="order-total">&nbsp;${{ total | floatformat:2 }}</p>
+                                <p class="my-0 text-nowrap" id="order-total">&nbsp;${{ total | floatformat:2 }}</p>
                                 {% if discount_amount %}
-                                    <p class="my-0" id="discount-amount">-${{ discount_amount|floatformat:2 }}</p>
+                                    <p class="my-0 text-nowrap" id="discount-amount">-${{ discount_amount|floatformat:2 }}</p>
                                 {% endif %}
-                                <p class="my-0" id="delivery">&nbsp;${{ delivery | floatformat:2 }}</p>
-                                <p class="my-0"><strong id="grand-total">&nbsp;${{ grand_total | floatformat:2 }}</strong></p>
+                                <p class="my-0 text-nowrap" id="delivery">&nbsp;${{ delivery | floatformat:2 }}</p>
+                                <p class="my-0 text-nowrap"><strong id="grand-total">&nbsp;${{ grand_total | floatformat:2 }}</strong></p>
                             </div>
                         </div>
                     </div>
