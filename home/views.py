@@ -11,9 +11,12 @@ def index(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             result = subscribe_email(email)
-            if 'status' in result and result['status'] == 'pending':
-                messages.success(request, 'Thank you for signing up! Please check your email to confirm your subscription.')
-            else:
-                messages.error(request, f"An error occurred: {result.get('message', 'Unknown error')}")
+            if 'status' in result:
+                if result['status'] == 'pending':
+                    messages.success(request, 'Thank you for signing up! Please check your email to confirm your subscription.')
+                elif result['status'] == 'error' and result['message'] == 'This email is already subscribed.':
+                    messages.info(request, 'This email is already subscribed to the newsletter.')
+                else:
+                    messages.error(request, f"An error occurred: {result.get('message', 'Unknown error')}")
             return redirect('home')
     return render(request, 'home/index.html', {'form': form})

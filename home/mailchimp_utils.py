@@ -16,6 +16,9 @@ def subscribe_email(email):
         })
         return response
     except ApiClientError as error:
+        error_response = error.text
+        if "is already a list member" in error_response:
+            return {'status': 'error', 'message': 'This email is already subscribed.'}
         return {'status': 'error', 'message': str(error)}
     except requests.exceptions.ConnectionError as error:
         return {'status': 'error', 'message': 'Connection error occurred. Please try again later.'}
