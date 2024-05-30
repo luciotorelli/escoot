@@ -457,8 +457,23 @@ The app was manually tested on the following browsers. All forms, buttons, views
 
 ### Issues
 
-Issues were logged using GitHub native issue tracking system. All logged issues can be [viewed here.](https://github.com/luciotorelli/escoot/issues)
-They were tagged as either bug, enhancement, documentation or user stories accordingly. 
+# Fixed Issues and Bugs
+
+This document lists the issues and bugs that have been fixed in the project.
+
+| Number | Commit Link | Commit Title | Issue Explanation | Fixed Summary |
+| --- | --- | --- | --- | --- |
+| 1 | [Commit Link](https://github.com/luciotorelli/escoot/commit/50593ce) | Fix success page text breaks | The success page text breaks on certain screen sizes or resolutions. | Adjusted the CSS styling to ensure proper word wrapping and alignment within the container elements. |
+| 2 | [Commit Link](https://github.com/luciotorelli/escoot/commit/cbc01b0) | Fix incorrect wrapping of discount value on mobile screens | The discount value wraps incorrectly on mobile screens, causing layout issues. | Modified the CSS to use media queries that optimize the layout for smaller screen sizes, ensuring the discount value is displayed correctly without breaking the layout. |
+| 3 | [Commit Link](https://github.com/luciotorelli/escoot/commit/32c796d) | Improve page 404 | The 404 error page lacks user-friendly text and styling. | Enhanced the 404 page by adding more user-friendly text, improved styling, and a link to guide users back to the homepage. |
+| 4 | [Commit Link](https://github.com/luciotorelli/escoot/commit/9a9f071) | Fix centering of email confirmation template | The email confirmation template is not properly centered across different email clients. | Adjusted the HTML structure and CSS styles to ensure the content is properly centered across different email clients. |
+| 5 | [Commit Link](https://github.com/luciotorelli/escoot/commit/c42bc32) | Fix orders being created with discounts when they should be blank | Orders are being created with discounts when they should not have any discounts applied. | Added validation checks in the order creation logic to ensure discounts are only applied when appropriate, preventing the creation of orders with unintended discount values. |
+| 6 | [Commit Link](https://github.com/luciotorelli/escoot/commit/93b3708) | Fix product Id error on Stripe | Product ID error occurs during Stripe transactions, causing payment failures. | Corrected the product ID references in the payment processing code, ensuring that the correct IDs are used during transactions. |
+| 7 | [Commit Link](https://github.com/luciotorelli/escoot/commit/50f4acb) | Fix error 404 from Stripe | 404 error is returned from Stripe during payment processing. | Updated the API endpoint URLs and ensured that all requests to Stripe are correctly formed and directed to the right endpoints. |
+| 8 | [Commit Link](https://github.com/luciotorelli/escoot/commit/821149b) | Fix double orders being created due to discount codes | Double orders are being created when discount codes are applied. | Added additional checks in the order processing workflow to prevent multiple submissions or processing of the same order. |
+| 9 | [Commit Link](https://github.com/luciotorelli/escoot/commit/ce8c392) | Fix webhook error "Cannot resolve keyword 'id' into field" | Webhook returns an error 'Cannot resolve keyword 'id' into field' due to incorrect keyword references. | Ensured that the webhook handler correctly references existing fields and models in the database schema, avoiding incorrect keyword references. |
+| 10 | [Commit Link](https://github.com/luciotorelli/escoot/commit/50593ce) | Fix success page text breaks | Duplicate entry for the success page text breaks order summary. | Adjusted the CSS styling to ensure proper word wrapping and alignment within the container elements. |
+
 
 <img src="readme-assets/bugs.jpg" width="1000px" />
 
