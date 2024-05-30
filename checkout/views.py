@@ -25,6 +25,8 @@ def cache_checkout_data(request):
         # Retrieve and serialize the cart data
         cart = json.dumps(request.session.get('cart', {}))
         save_info = request.POST.get('save_info')
+        discount_code = request.session.get('discount_code')
+        discount_amount = request.session.get('discount_amount', 0)
 
         metadata = {
             'cart': cart,
