@@ -13,7 +13,7 @@ E-scoot is a Django application designed as an ecommerce website.Tailored specif
 ## Table of Contents
 
 1. [Overview](https://github.com/luciotorelli/escoot#overview)
-2. [Mockup Facebook Business Page](https://github.com/luciotorelli/escoot#mockup-facebook-business-page)
+2. [Business Model](https://github.com/luciotorelli/escoot#business-model)
 3. [Epics - User Stories](https://github.com/luciotorelli/escoot#epics-user-stories)
 4. [Wireframes](https://github.com/luciotorelli/escoot#wireframes)
 5. [Project Management and Planning](https://github.com/luciotorelli/escoot#project-management-and-planning)
@@ -26,7 +26,62 @@ E-scoot is a Django application designed as an ecommerce website.Tailored specif
 
 ---
 
-# Mockup Facebook Business Page
+# Business Model
+
+## Core Business Intents
+
+### Customized E-Scooter Sales
+
+- **Easy Interface:** A user-friendly interface lets customers build their scooters by choosing specific parts and upgrades.
+- **Lots of Options:** We offer a wide variety of customization choices to meet different needs and preferences.
+- **B2C Focus:** We love connecting directly with our customers. This approach lets us understand their needs better, offer personalized solutions, and ensure they have a great shopping experience while helping scaling sustainably.
+
+### Official Parts Inventory
+
+- **Wide Inventory:** We keep a large stock of official parts to help with customization and maintenance.
+- **Quality Assurance:** By offering official parts, we ensure high quality and reliability.
+- **Convenience:** Easy access to replacement parts and accessories encourages repeat purchases.
+
+### Keeping Customers Happy
+
+- **Loyalty Rewards:** We introduce programs that reward repeat customers with discounts, exclusive offers, and early access to new products.
+- **Stay in Touch:** We use email marketing to keep customers updated on new arrivals, promotions, and personalized recommendations.
+- **Great Service:** We provide excellent customer service to build trust and encourage long-term relationships.
+
+### Going Green
+
+- **Eco-Friendly:** We emphasize the eco-friendly nature of electric scooters as a sustainable transportation option.
+- **Partnerships:** We partner with environmental organizations to promote sustainability initiatives and enhance our brand image.
+
+## Marketing Strategies
+
+### Working with Influencers
+
+- **Collaborations:** We work with influencers and content creators who love electric scooters and green transportation.
+- **Generate Buzz:** Influencers help create excitement by sharing reviews, unboxings, and tutorials, which attract new customers.
+
+### Social Media and Engaging Content
+
+- **Focus on Facebook:** We post engaging content on Facebook, including how customers customize their scooters and their personal stories.
+- **Targeted Ads:** We run ad campaigns on Facebook aimed at people interested in sustainable transportation and tech gadgets.
+
+### Keeping in Touch through Emails
+
+- **Stay Updated:** We have a strong email marketing strategy to keep our subscribers informed about new products, special offers, and company news.
+- **Personal Touch:** We send personalized emails recommending products based on what customers like and have bought before.
+
+### Getting Found Online
+
+- **Optimize Website:** We make sure our website is easy to find through search engines, increasing our visibility and attracting organic traffic.
+- **SEO Tips:** We use relevant keywords, create high-quality content, and build backlinks to improve our search rankings and bring more visitors to the site.
+
+### Making Our Website User-Friendly
+
+- **Mobile-Friendly:** We ensure our website is easy to use on mobile devices, fast, and simple to navigate, offering a smooth shopping experience.
+- **Easy Navigation:** We use intuitive design elements to guide users through the customization and purchasing process effortlessly.
+
+
+By focusing on these strategies and keeping our business intents customer-centric, E-scoot aims to become a leading brand in the electric scooter market, driving sales and building long-term customer loyalty.
 
 <img id="facebook-mockup" src="readme-assets/facebook-mockup.png"
      alt="Facebook Business Page Mockup"
