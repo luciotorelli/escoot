@@ -6,11 +6,13 @@ from django.conf import settings
 from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.models import UserProfile
+from decimal import Decimal 
 
 import json
 import time
 
 import stripe
+
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
@@ -33,7 +35,7 @@ class StripeWH_Handler:
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
-        )        
+        )
 
     def handle_event(self, event):
         """
@@ -49,10 +51,15 @@ class StripeWH_Handler:
         """
         intent = event.data.object
         pid = intent.id
-        cart = intent.metadata.cart
+        cart = json.loads(intent.metadata.cart)
         save_info = intent.metadata.save_info
+        discount_code = intent.metadata.get('discount_code')
+        discount_amount = Decimal(intent.metadata.get('discount_amount', '0.00'))
 
-        stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
+        # Get the Charge object
+        stripe_charge = stripe.Charge.retrieve(
+            intent.latest_charge
+        )
 
         billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
@@ -93,7 +100,7 @@ class StripeWH_Handler:
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
-                    original_cart=cart,
+                    original_cart=json.dumps(cart),
                     stripe_pid=pid,
                 )
                 order_exists = True
@@ -120,16 +127,20 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
-                    original_cart=cart,
+                    original_cart=json.dumps(cart),
                     stripe_pid=pid,
+                    discount_code=discount_code,
+                    discount_amount=discount_amount,
                 )
-                for item_id, item_data in json.loads(cart).items():
+                for item_id, item_data in cart.items():
                     product = Product.objects.get(product_id=item_id)
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
+                        quantity=item_data,
                     )
                     order_line_item.save()
+                order.update_total()
             except Exception as e:
                 if order:
                     order.delete()
