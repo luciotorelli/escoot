@@ -205,6 +205,8 @@ main {
 
 .dropdown-menu {
     background-color: #333738;
+    border: solid 2px #133607;
+    box-shadow: #000 0 0 10px; 
     --bs-dropdown-link-hover-bg: #202020; /* Override the default Bootstrap hoover dropdown link */
 }
 

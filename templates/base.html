@@ -81,6 +81,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
                                     {% if user.is_superuser %}
                                         <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
                                         <li><a class="dropdown-item" href="{% url 'discount:discount_list' %}">Discount management</a></li>
@@ -95,6 +96,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropupMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'wishlist:wishlist_view' %}">Wishlist</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
                                     {% if user.is_superuser %}
                                         <li><a class="dropdown-item" href="{% url 'products:add_product' %}">Add product</a></li>
                                         <li><a class="dropdown-item" href="{% url 'discount:discount_list' %}">Discount management</a></li>
