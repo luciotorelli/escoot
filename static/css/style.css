@@ -45,6 +45,10 @@
     border-radius: .375rem !important;
 }
 
+.text-muted {
+    color: #f1f1f1 !important;
+}
+
 
 /* ------------------------------------- Toasts */
 
@@ -98,6 +102,10 @@
 body {
     background-color: #202020;
     color: #F1F5F2;
+}
+
+.grey-background{
+    background-color: #333738;
 }
 
 /* ------------------------------------- Main */
@@ -292,6 +300,37 @@ main {
 
 .newsletter-form button:hover {
     background-color: #0056b3;
+}
+
+/* ------------------------------------- Profile page  */
+
+.nav-tabs .custom-tab {
+    color: white !important;
+    background-color: #202020 !important;
+    border-color: #202020 !important;
+    font-size: 0.9rem !important;
+    padding: 1rem 1.5rem !important;
+}
+
+.nav-tabs .custom-tab.active {
+    color: black !important;
+    background-color: #f9c000 !important;
+    border-color: #f9c000 !important;
+}
+
+.tab-content {
+    background-color: #3a3d42;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.tab-pane {
+    color: white;
+}
+
+.order-history {
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 

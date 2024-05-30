@@ -1,41 +1,77 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
-{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col">
+                <h1 class="text-white text-center mt-4">Profile Page</h1>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container grey-background py-5 rounded">
         <div class="row">
             <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">My Profile</h2>
-                <hr>
+                <h2 class="logo-font mb-4 text-center text-white">My Profile</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-6">
+        <ul class="nav nav-tabs justify-content-center mb-4" id="profileTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link custom-tab active" id="delivery-info-tab" data-bs-toggle="tab" href="#delivery-info" role="tab" aria-controls="delivery-info" aria-selected="true">
+                    <span class="d-none d-md-block">Delivery Information</span>
+                    <span class="d-block d-md-none">Delivery Info.</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link custom-tab" id="order-history-tab" data-bs-toggle="tab" href="#order-history" role="tab" aria-controls="order-history" aria-selected="false">
+                    <span class="d-none d-md-block">Order History</span>
+                    <span class="d-block d-md-none">Orders</span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" id="profileTabsContent">
+            <div class="tab-pane fade show active" id="delivery-info" role="tabpanel" aria-labelledby="delivery-info-tab">
                 <p class="text-muted">Default Delivery Information</p>
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
-                    {{ form|crispy }}
-                    <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                    <div class="row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.default_phone_number|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_postcode.id_for_label }}">Postcode</label>
+                            {{ form.default_postcode|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_town_or_city.id_for_label }}">Town or City</label>
+                            {{ form.default_town_or_city|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_street_address1.id_for_label }}">Street Address 1</label>
+                            {{ form.default_street_address1|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_street_address2.id_for_label }}">Street Address 2</label>
+                            {{ form.default_street_address2|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="{{ form.default_county.id_for_label }}">County</label>
+                            {{ form.default_county|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button class="btn btn-primary rounded text-uppercase float-right mt-2">Update Information</button>
                 </form>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="tab-pane fade" id="order-history" role="tabpanel" aria-labelledby="order-history-tab">
                 <p class="text-muted">Order History</p>
-                <div class="order-history table-responsive">
-                    <table class="table table-sm table-borderless">
+                <div class="order-history table-responsive bg-dark p-3 rounded shadow-sm">
+                    <table class="table table-sm table-hover table-dark">
                         <thead>
                             <tr>
                                 <th>Order Number</th>
@@ -48,8 +84,7 @@
                             {% for order in orders %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'order_history' order.order_number %}"
-                                        title="{{ order.order_number }}">
+                                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
                                             {{ order.order_number|truncatechars:6 }}
                                         </a>
                                     </td>
@@ -73,9 +108,10 @@
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'js/countryfield.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
