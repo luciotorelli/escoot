@@ -40,6 +40,7 @@ def cart_contents(request):
             discount = DiscountCode.objects.get(code=discount_code, active=True)
             discount_amount = (discount.discount / Decimal('100')) * total
             grand_total -= discount_amount
+            request.session['discount_amount'] = str(discount_amount)
         except DiscountCode.DoesNotExist:
             request.session['discount_code'] = None
 
