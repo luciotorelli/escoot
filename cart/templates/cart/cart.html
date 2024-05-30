@@ -21,7 +21,7 @@
           </div>
           <div class="col-12 col-sm-4 d-flex justify-content-center flex-column text-center text-sm-left mb-2 mb-sm-0">
             <h5 class="mb-0">{{ item.product.product_name }}</h5>
-            <p class="mb-0">Price per unit: {{ item.product.price }}</p>
+            <p class="mb-0">Price per unit: {{ item.product.price|floatformat:2 }}</p>
           </div>
           <div class="col-12 col-sm-4 d-flex flex-column align-items-center mb-2 mb-sm-0">
             <form action="{% url 'cart:adjust_cart' item.product.product_id %}" method="post">
@@ -51,9 +51,26 @@
     <div class="col-lg-4 d-flex align-items-center justify-content-center">
       <div class="card">
         <div class="card-body text-center">
-          <h5 class="card-title">Subtotal: {{ total }}</h5>
+          <h5 class="card-title">Subtotal: ${{ total|floatformat:2 }}</h5>
+          {% if discount_amount %}
+            <p class="card-text">Discount: -${{ discount_amount|floatformat:2 }}</p>
+          {% endif %}
           <p class="card-text">Shipping: Calculated at checkout</p>
-          <a href="{% url 'checkout' %}" class="btn btn-primary">Continue to Checkout</a>
+          <h5 class="card-title">Total: ${{ grand_total|floatformat:2 }}</h5>
+
+          <!-- Discount Code Form -->
+          <form action="{% url 'cart:apply_discount' %}" method="post" class="mt-3">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text" name="discount_code" class="form-control" placeholder="Discount Code" required>
+              <button class="btn btn-primary" type="submit">Apply</button>
+            </div>
+            {% if applied_discount_code %}
+              <p class="text-success mt-2">Applied discount code: {{ applied_discount_code }}</p>
+            {% endif %}
+          </form>
+
+          <a href="{% url 'checkout' %}" class="btn btn-primary mt-3">Continue to Checkout</a>
         </div>
       </div>
     </div>

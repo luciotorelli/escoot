@@ -5,6 +5,7 @@ from products.models import Product
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.http import HttpResponse
+from discount.models import DiscountCode
 
 def cart(request):
     """ A view to return the cart page """
@@ -73,3 +74,18 @@ def remove_from_cart(request, item_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
+
+def apply_discount(request):
+    """
+    A view to apply a discount code to the cart.
+    """
+    discount_code = request.POST.get('discount_code', '').strip()
+    try:
+        discount = DiscountCode.objects.get(code=discount_code, active=True)
+        request.session['discount_code'] = discount_code
+        messages.success(request, f'Discount code "{discount_code}" applied successfully!')
+    except DiscountCode.DoesNotExist:
+        request.session['discount_code'] = None
+        messages.error(request, 'Invalid or expired discount code.')
+
+    return redirect('cart:cart')
