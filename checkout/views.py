@@ -26,11 +26,6 @@ def cache_checkout_data(request):
         cart = json.dumps(request.session.get('cart', {}))
         save_info = request.POST.get('save_info')
 
-        # Retrieve discount information from the session
-        discount_code = request.session.get('discount_code')
-        discount_amount = request.session.get('discount_amount', 0)
-
-        # Prepare metadata to be added to the PaymentIntent
         metadata = {
             'cart': cart,
             'save_info': save_info,
@@ -56,7 +51,6 @@ def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
 
-        # Retrieve discount information from the session
         discount_code = request.session.get('discount_code')
         discount_amount = Decimal(request.session.get('discount_amount', 0))
 
@@ -78,9 +72,12 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
 
-            # Apply the discount to the order
-            order.discount_code = discount_code
-            order.discount_amount = discount_amount
+            if discount_code:
+                order.discount_code = discount_code
+                order.discount_amount = discount_amount
+            else:
+                order.discount_amount = Decimal('0.00')
+
             order.save()
 
             for item_id, item_data in cart.items():
@@ -107,8 +104,8 @@ def checkout(request):
                 currency=settings.STRIPE_CURRENCY,
                 metadata={
                     'order_id': order.order_number,
-                    'discount_code': discount_code,
-                    'discount_amount': str(discount_amount)
+                    'discount_code': discount_code if discount_code else '',
+                    'discount_amount': str(discount_amount) if discount_amount else '0.00'
                 }
             )
 

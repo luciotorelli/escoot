@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -57,11 +58,10 @@ class StripeWH_Handler:
             intent.latest_charge
         )
 
-        billing_details = stripe_charge.billing_details # updated
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2) # updated
+        grand_total = round(stripe_charge.amount / 100, 2)
 
-        # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -125,6 +125,8 @@ class StripeWH_Handler:
                     county=shipping_details.address.state,
                     original_cart=cart,
                     stripe_pid=pid,
+                    discount_code=intent.metadata.get('discount_code', ''),
+                    discount_amount=Decimal(intent.metadata.get('discount_amount', '0.00')),
                 )
                 for item_id, item_data in json.loads(cart).items():
                     product = Product.objects.get(product_id=item_id)
@@ -145,9 +147,6 @@ class StripeWH_Handler:
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
-        """
-        Handle the payment_intent.payment_failed webhook from Stripe
-        """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)
