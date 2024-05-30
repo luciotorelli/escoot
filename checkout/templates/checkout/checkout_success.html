@@ -26,24 +26,25 @@
                     <h5 class="card-title">Order Info</h5>
                     <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded bg-warning">
-                            <span class="font-weight-bold">Order Number</span>
-                            <span class="font-weight-bold text-right">{{ order.order_number }}</span>
+                            <span class="font-weight-bold text-dark">Order Number</span>
+                            <span class="text-right text-success fw-bold text-break" style="max-width: 150px;">{{ order.order_number }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Order Date</span>
-                            <span class="font-weight-bold text-right">{{ order.date }}</span>
+                            <span class="font-weight-bold text-dark">Order Date</span>
+                            <span class="text-right text-success fw-bold">{{ order.date }}</span>
                         </li>
                     </ul>
+
                     <h5 class="card-title">Order Details</h5>
                     <ul class="list-group list-group-flush mb-3">
                         {% for item in order.lineitems.all %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
                             {% if item.product.product_name and item.product.price %}
                             <span>{{ item.quantity }}x {{ item.product.product_name }}</span>
-                            <span class="font-weight-bold text-right"> for ${{ item.product.price }} each</span>
+                            <span class="text-right text-success fw-bold"> for ${{ item.product.price }} each</span>
                             {% else %}
                             <span>{{ item.quantity }}x Product deleted from store</span>
-                            <span class="font-weight-bold text-right">Please find original details in your email</span>
+                            <span class="text-right text-success fw-bold">Please find original details in your email</span>
                             {% endif %}
                         </li>
                         {% endfor %}
@@ -51,64 +52,64 @@
                     <h5 class="card-title">Delivering To</h5>
                     <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Full Name</span>
-                            <span class="font-weight-bold text-right">{{ order.full_name }}</span>
+                            <span class="font-weight-bold text-dark">Full Name</span>
+                            <span class="text-right text-success fw-bold">{{ order.full_name }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Address 1</span>
-                            <span class="font-weight-bold text-right">{{ order.street_address1 }}</span>
+                            <span class="font-weight-bold text-dark">Address 1</span>
+                            <span class="text-right text-success fw-bold">{{ order.street_address1 }}</span>
                         </li>
                         {% if order.street_address2 %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Address 2</span>
-                            <span class="font-weight-bold text-right">{{ order.street_address2 }}</span>
+                            <span class="font-weight-bold text-dark">Address 2</span>
+                            <span class="text-right text-success fw-bold">{{ order.street_address2 }}</span>
                         </li>
                         {% endif %}
                         {% if order.county %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">County</span>
-                            <span class="font-weight-bold text-right">{{ order.county }}</span>
+                            <span class="font-weight-bold text-dark">County</span>
+                            <span class="text-right text-success fw-bold">{{ order.county }}</span>
                         </li>
                         {% endif %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Town or City</span>
-                            <span class="font-weight-bold text-right">{{ order.town_or_city }}</span>
+                            <span class="font-weight-bold text-dark">Town or City</span>
+                            <span class="text-right text-success fw-bold">{{ order.town_or_city }}</span>
                         </li>
                         {% if order.postcode %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Postal Code</span>
-                            <span class="font-weight-bold text-right">{{ order.postcode }}</span>
+                            <span class="font-weight-bold text-dark">Postal Code</span>
+                            <span class="text-right text-success fw-bold">{{ order.postcode }}</span>
                         </li>
                         {% endif %}
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Country</span>
-                            <span class="font-weight-bold text-right">{{ order.country }}</span>
+                            <span class="font-weight-bold text-dark">Country</span>
+                            <span class="text-right text-success fw-bold">{{ order.country }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Phone Number</span>
-                            <span class="font-weight-bold text-right">{{ order.phone_number }}</span>
+                            <span class="font-weight-bold text-dark">Phone Number</span>
+                            <span class="text-right text-success fw-bold">{{ order.phone_number }}</span>
                         </li>
                     </ul>
                     <h5 class="card-title">Billing Info</h5>
                     <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Order Total</span>
-                            <span class="font-weight-bold text-right">${{ order.order_total }}</span>
+                            <span class="font-weight-bold text-dark">Order Total</span>
+                            <span class="text-right text-success fw-bold">${{ order.order_total }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Delivery</span>
-                            <span class="font-weight-bold text-right">${{ order.delivery_cost }}</span>
+                            <span class="font-weight-bold text-dark">Delivery</span>
+                            <span class="text-right text-success fw-bold">${{ order.delivery_cost }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Discount</span>
-                            <span class="font-weight-bold text-right">- ${{ order.discount_amount }}</span>
+                            <span class="font-weight-bold text-dark">Discount</span>
+                            <span class="text-right text-success fw-bold">- ${{ order.discount_amount }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center mb-1 rounded">
-                            <span class="font-weight-bold">Grand Total</span>
-                            <span class="font-weight-bold text-right">${{ order.grand_total }}</span>
+                            <span class="font-weight-bold text-dark">Grand Total</span>
+                            <span class="text-right text-success fw-bold">${{ order.grand_total }}</span>
                         </li>
                     </ul>
-                    <div class="text-right">
+                    <div class="text-right text-success fw-bold">
                         {% if from_profile %}
                         <a href="{% url 'profile' %}" class="btn btn-secondary rounded">
                             <i class="fas fa-angle-left mr-2"></i>Back to Profile
