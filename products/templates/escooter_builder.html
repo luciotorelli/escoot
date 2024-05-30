@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_tags %}
+    <meta name="description" content="Build your own modular electric scooter with our E-Scooter Builder. Customize every part to suit your needs and preferences. Enjoy free shipping, 2-year warranty, and quick delivery.">
+    <meta name="keywords" content="build your own scooter, customizable electric scooter, modular scooter parts, e-scooter builder, electric scooter customization, personalized e-scooter, green transportation, sustainable mobility, eco-friendly scooter">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Company Name">
+    <meta property="og:title" content="Build Your Own Modular Electric Scooter">
+    <meta property="og:description" content="Customize every part of your modular electric scooter with our E-Scooter Builder. Enjoy free shipping, 2-year warranty, and quick delivery.">
+    <meta property="og:image" content="{% static 'images/scooter-builder.jpg' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Build Your Own Modular Electric Scooter">
+    <meta name="twitter:description" content="Customize every part of your modular electric scooter with our E-Scooter Builder. Enjoy free shipping, 2-year warranty, and quick delivery.">
+    <meta name="twitter:image" content="{% static 'images/scooter-builder.jpg' %}">
+{% endblock %}
+
 {% block title %}
     E-Scooter Builder
 {% endblock %}

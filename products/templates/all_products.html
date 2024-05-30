@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_tags %}
+    <meta name="description" content="Browse our extensive collection of modular electric scooter parts and accessories. Sort by price, category, and find the perfect components to build or repair your ideal e-scooter.">
+    <meta name="keywords" content="electric scooter parts, modular scooter components, affordable e-scooter accessories, build your own scooter, scooter repair parts, e-scooter customization, sustainable mobility, green transportation">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Company Name">
+    <meta property="og:title" content="Shop All Electric Scooter Parts and Accessories">
+    <meta property="og:description" content="Browse our extensive collection of modular electric scooter parts and accessories. Sort by price, category, and find the perfect components to build or repair your ideal e-scooter.">
+    <meta property="og:image" content="{% static 'images/all-products-hero.jpg' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shop All Electric Scooter Parts and Accessories">
+    <meta name="twitter:description" content="Browse our extensive collection of modular electric scooter parts and accessories. Sort by price, category, and find the perfect components to build or repair your ideal e-scooter.">
+    <meta name="twitter:image" content="{% static 'images/all-products-hero.jpg' %}">
+{% endblock %}
+
+
 {% block page_header %}
 <div class="container header-container">
   <div class="row">

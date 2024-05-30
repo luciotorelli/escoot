@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_tags %}
+    <meta name="description" content="Discover the only modular electric scooter that is customizable, repairable, and affordable. Build your ideal E-scooter or shop for parts today!">
+    <meta name="keywords" content="innovative electric scooters, modular scooters, eco-friendly e-scooters, build your scooter, scooter customization, sustainable urban mobility, electric scooter parts, e-scooter accessories, repairable scooters, green transportation">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Company Name">
+    <meta property="og:title" content="The Only Modular Electric Scooter">
+    <meta property="og:description" content="Discover the only modular electric scooter that is customizable, repairable, and affordable. Build your ideal E-scooter or shop for parts today!">
+    <meta property="og:image" content="{% static 'images/hero-image.jpg' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Only Modular Electric Scooter">
+    <meta name="twitter:description" content="Discover the only modular electric scooter that is customizable, repairable, and affordable. Build your ideal E-scooter or shop for parts today!">
+    <meta name="twitter:image" content="{% static 'images/hero-image.jpg' %}">
+{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_tags %}
+    <meta name="description" content="Thank you for your order! View your order details and delivery information here. A confirmation email has been sent to you.">
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block page_header %}
 <div class="container mt-5">
     <div class="row">
