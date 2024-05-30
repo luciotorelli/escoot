@@ -7,7 +7,6 @@ from django.http import JsonResponse
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
-from discount.models import DiscountCode, AppliedDiscount
 
 from products.models import Product
 from profiles.models import UserProfile
@@ -16,22 +15,6 @@ from cart.contexts import cart_contents
 
 import stripe
 import json
-
-@csrf_exempt
-def apply_discount(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        code = data.get('discount_code', '')
-        try:
-            discount_code = DiscountCode.objects.get(code=code, active=True)
-            discount_amount = discount_code.discount / 100
-            message = f'Discount code {code} applied successfully!'
-            return JsonResponse({'valid': True, 'discount_amount': discount_amount, 'message': message})
-        except DiscountCode.DoesNotExist:
-            message = 'This discount code is invalid or expired.'
-            return JsonResponse({'valid': False, 'message': message})
-
-    return JsonResponse({'valid': False, 'message': 'Invalid request method.'})
 
 @require_POST
 def cache_checkout_data(request):
@@ -52,20 +35,8 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    discount_amount = 0
-    discount_code = None
-
     if request.method == 'POST':
         cart = request.session.get('cart', {})
-
-        # Handle discount code application
-        if 'discount_code' in request.POST:
-            code = request.POST.get('discount_code')
-            try:
-                discount_code = DiscountCode.objects.get(code=code, active=True)
-                discount_amount = discount_code.discount / 100
-            except DiscountCode.DoesNotExist:
-                messages.error(request, 'This discount code is invalid or expired.')
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -84,8 +55,8 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
-
             order.save()
+
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(product_id=item_id)
@@ -100,16 +71,8 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('cart'))
 
-            # Calculate grand total including discount
+            # Calculate grand total
             order.update_total()
-            if discount_code:
-                discount_value = discount_amount * order.grand_total
-                order.grand_total -= discount_value
-                order.discount_amount = discount_value
-                order.discount_code = discount_code.code
-                order.save()
-                AppliedDiscount.objects.create(order=order, discount_code=discount_code, discount_amount=discount_value)
-                messages.success(request, f'Discount code {code} applied successfully!')
 
             # Update Stripe PaymentIntent with the new amount
             stripe.api_key = stripe_secret_key

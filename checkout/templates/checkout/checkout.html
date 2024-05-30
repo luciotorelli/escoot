@@ -60,13 +60,17 @@
                         <div class="row text-white text-right mt-3">
                             <div class="col-7 offset-2">
                                 <p class="my-0">Order Total:</p>
-                                <p class="my-0">Discount:</p>
+                                {% if discount_amount %}
+                                    <p class="my-0">Discount:</p>
+                                {% endif %}
                                 <p class="my-0">Delivery:</p>
                                 <p class="my-0"><strong>Grand Total:</strong></p>
                             </div>
                             <div class="col-3">
                                 <p class="my-0" id="order-total">&nbsp;${{ total | floatformat:2 }}</p>
-                                <p class="my-0" id="discount-amount">-${{ discount|default:0|floatformat:2 }}</p>
+                                {% if discount_amount %}
+                                    <p class="my-0" id="discount-amount">-${{ discount_amount|floatformat:2 }}</p>
+                                {% endif %}
                                 <p class="my-0" id="delivery">&nbsp;${{ delivery | floatformat:2 }}</p>
                                 <p class="my-0"><strong id="grand-total">&nbsp;${{ grand_total | floatformat:2 }}</strong></p>
                             </div>
@@ -124,15 +128,6 @@
                     </fieldset>
 
                     <fieldset class="rounded p-4 mb-2 checkout-section text-light">
-                        <legend class="fieldset-label small  px-2 w-auto">Discount Code</legend>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="discount-code" name="discount_code" placeholder="Enter discount code">
-                            <button type="button" class="btn btn-primary" id="apply-discount-btn" data-apply-discount-url="{% url 'apply_discount' %}">Apply</button>
-                        </div>
-                        <div id="discount-message" class="text-success"></div>
-                    </fieldset>
-
-                    <fieldset class="rounded p-4 mb-2 checkout-section text-light">
                         <legend class="fieldset-label small  px-2 w-auto">Payment</legend>
                         <!-- A Stripe card element will go here -->
                         <div class="mb-3" id="card-element"></div>
@@ -141,6 +136,9 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                         <!-- Pass the client secret to the view so we can get the payment intent id -->
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                        <!-- Hidden fields for discount code and amount -->
+                        <input type="hidden" value="{{ discount_code }}" name="discount_code">
+                        <input type="hidden" value="{{ discount_amount }}" name="discount_amount">
                     </fieldset>
                     <div class="text-center mt-5 mb-2">                    
                         <a href="{% url 'cart:cart' %}" class="btn btn-secondary m-2">
@@ -180,5 +178,4 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'js/stripe_elements.js' %}"></script>
-    <script src="{% static 'js/apply_discount.js' %}"></script>
 {% endblock %}
